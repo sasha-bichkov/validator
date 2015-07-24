@@ -51,6 +51,7 @@ You can set events as 'keyup' or 'blur' for input.
 
 ### _messages_ ###
 See examples for more details
+
 	var messages = [
 		{
 			el: '.input',
