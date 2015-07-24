@@ -1,0 +1,58 @@
+@import 'normalize.css';
+
+body {
+	padding: 40px;
+	background: #723e20 url('../wood-wallpaper.png');
+	font-size: 13pt;
+	font-family: 'Open Sans';
+}
+
+h1 {
+	color: #fff;
+	font-size: 50pt;
+	font-weight: bold;
+}
+
+h1, h2 {
+	text-align: center;
+}
+
+input {
+	font-size: 16pt;
+	margin-bottom: 3px;
+	padding: 5px 10px;
+	width: 94%;
+}
+
+label {
+	display: block;
+	margin-top: 15px;
+	font-weight: bold;
+}
+
+button {
+	display: block;
+	padding: 10px 70px;
+	margin: 0 auto;
+	margin-top: 15px;
+}
+
+textarea {
+	resize: none;
+	width: 445px;
+	height: 200px;
+}
+
+input[type="checkbox"], 
+input[type="radio"] {
+	width: auto;
+}
+
+input[type="file"] {
+	padding: 0;
+}
+
+code {
+	font-size: 10pt;
+	tab-size: 2;
+}
