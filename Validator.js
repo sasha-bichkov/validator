@@ -54,7 +54,7 @@
 		},
 
 		color: function(val) {
-			return /^#[0-9a-z]{6}$/;
+			return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(val);
 		},
 
 		/**
