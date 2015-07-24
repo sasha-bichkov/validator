@@ -41,7 +41,7 @@ _After_ is a function which call after validation.
     Before() | Ajax success() or error() | After()
 
 ### _events_ ###
-You can set events as 'keyup' or 'blur' for input.
+You can set any events on your form.
 	
 	var events = {
 		'keyup': true,
