@@ -150,10 +150,6 @@
 		 * http://htmlpurifier.org/live/smoketests/xssAttacks.php
 		 */
 		xss: function(val) {
-			var res = val;
-			var symbols = [];
-			var i = res.length;
-
 			var htmlEscapes = {
 				'&' : '&apm;',
 				'<' : '&lt;',
@@ -162,7 +158,7 @@
 				"'" : '&#x27;'
 			};
 
-			return res.replace(/[&<>"']/g, function(match) {
+			return val.replace(/[&<>"']/g, function(match) {
 				return htmlEscapes[match];
 			});
 		}
