@@ -1,129 +1,129 @@
 /*========== WITHOUT GROUP ==========*/
 
 .container {
-	width: 700px;
-	margin: 0 auto;
+  width: 700px;
+  margin: 0 auto;
 }
 
 .row {
-	padding: 70px 125px;
-	box-sizing: border-box;
-	background-color: #fff;
-	margin-bottom: 40px;
-	-webkit-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
-		 -moz-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
-			-ms-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
-			 -o-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
-					box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
+  padding: 70px 125px;
+  box-sizing: border-box;
+  background-color: #fff;
+  margin-bottom: 40px;
+  -webkit-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
+     -moz-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
+      -ms-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
+       -o-box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
+          box-shadow: 7px 7px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .contact-block {
-	text-align: center;
+  text-align: center;
 }
 
 #select-value {
-	float: left;
-	margin-right: 15px;
+  float: left;
+  margin-right: 15px;
 }
 
 
 /*========== VALID AND INVALID ==========*/
 
 div.invalid {
-	color: red;
+  color: red;
 }
 
 div.valid {
-	color: green;
+  color: green;
 }
 
 input.valid,
 textarea#text.valid {
-	outline: 2px solid green;
+  outline: 2px solid green;
 }
 
 input.invalid,
 textarea#text.invalid {
-	outline: 2px solid red;
+  outline: 2px solid red;
 }
 
 select.valid {
-	outline: 2px solid green;
+  outline: 2px solid green;
 }
 
 /*========== EXAMPLE-3 ==========*/
 
 #example-3 input {
-	float: left;
-	width: 81%;
+  float: left;
+  width: 81%;
 }
 
 #example-3 div {
-	float: left;
-	width: 43px;
-	height: 43px;
-	margin-left: 10px;
-	opacity: 0;
-	transition: opacity 1s;
+  float: left;
+  width: 43px;
+  height: 43px;
+  margin-left: 10px;
+  opacity: 0;
+  transition: opacity 1s;
 }
 
 #example-3 label {
-	clear: left;
+  clear: left;
 }
 
 
 /*========== AJAX-STATUS ==========*/
 
 .ajax-status {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	padding: 16px 40px;
-	color: #fff;
-	opacity: 0;
-	transition: opacity 1s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px 40px;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 1s;
 }
 
 .ajax-status__success {
-	background-color: green;
-	opacity: 1;
+  background-color: green;
+  opacity: 1;
 }
 
 .ajax-status__error {
-	background-color: maroon;
-	opacity: 1;
+  background-color: maroon;
+  opacity: 1;
 }
 
 
 /*========== BLOCK ==========*/
 
 .blocks {
-	overflow: hidden;
-	clear: left;
+  overflow: hidden;
+  clear: left;
 }
 
 .radious-block,
 .checkboxes-block {
-	float: left;
-	width: 35%;
-	padding: 5px;
-	margin: 10px 0 20px 0;
+  float: left;
+  width: 35%;
+  padding: 5px;
+  margin: 10px 0 20px 0;
 }
 
 .radious-block {
-	margin-left: 75px;
+  margin-left: 75px;
 }
 
 
 /*========== ICON ==========*/
 
 .icon {
-	display: inline-block;
-	width: 33px;
-	height: 33px;
-	cursor: pointer;
-	background: url('../img/social.png');
+  display: inline-block;
+  width: 33px;
+  height: 33px;
+  cursor: pointer;
+  background: url('../img/social.png');
 }
 
 .twitter    { background-position: -341px 162px; }
@@ -138,14 +138,14 @@ select.valid {
 /*========== MARK ==========*/
 
 .success-mark {
-	background: url('../img/success-mark.png');
+  background: url('../img/success-mark.png');
 }
 
 .error-mark {
-	background: url('../img/error-mark.png');
+  background: url('../img/error-mark.png');
 }
 
 .success-mark,
 .error-mark {
-	opacity: 1!important;
+  opacity: 1!important;
 }

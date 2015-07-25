@@ -6,29 +6,29 @@
  */
 
 $(function() {
-	var ajax = {
-		success: function() {
-			showStatus('success');
-		},
-		error: function() {
-			showStatus('error');
-		}
-	};
+  var ajax = {
+    success: function() {
+      showStatus('success');
+    },
+    error: function() {
+      showStatus('error');
+    }
+  };
 
-	var events = { 'keyup': true };
+  var events = { 'keyup': true };
 
-	$('#example-7').validator({
-		autoClear: false,
-		filters: {
-			'#text': 'xss | required'
-		},
-		/**
-		 * Text was processed by filter 'xss'
-		 */
-		after: function(text) {
-			$('.textarea-message').html(text);
-		},
-		ajax: ajax,
-		events: events
-	});
+  $('#example-7').validator({
+    autoClear: false,
+    filters: {
+      '#text': 'xss | required'
+    },
+    /**
+     * Text was processed by filter 'xss'
+     */
+    after: function(text) {
+      $('.textarea-message').html(text);
+    },
+    ajax: ajax,
+    events: events
+  });
 });
