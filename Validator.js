@@ -25,439 +25,439 @@
  * https://github.com/umdjs/umd/blob/master/jqueryPlugin.js
  */
 ;(function (factory) {
-	if (typeof define === 'function' && define.amd) {
-		define(['jquery'], factory);
-	} else {
-		factory(jQuery);
-	}
+  if (typeof define === 'function' && define.amd) {
+    define(['jquery'], factory);
+  } else {
+    factory(jQuery);
+  }
 }(function ($) {
-	'use strict';
-
-	var PLUGIN_NAME = 'validator';
-
-	var defaults = {
-		autoClear: true
-	};
-
-	var callbacks;
-
-	/**
-	 * It's access filters by default 
-	 */
-	var filters = {
-		callback: function(opt, val) {
-			return callbacks[opt](val);
-		},
-
-		chars: function(val) {
-			return /^([а-яА-Яa-zA-Z]+)?$/.test(val);
-		},
-
-		color: function(val) {
-			return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(val);
-		},
-
-		/**
-		 * I took the regular expression from here, 
-		 * but I changed it since $(input[type="date"]).val() 
-		 * returns the date in "yyyy-mm-dd" format.
-		 * http://www.regular-expressions.info/dates.html
-		 */
-		date: function(val) {
-			return /^(19|20)\d\d[-\s\/\.](0[1-9]|1[012])[-\s\/\.](0[1-9]|[12][0-9]|3[01])$/.test(val);
-		},
-
-		digits: function(val) {
-			return /^([0-9]+)?$/.test(val);
-		},
-
-		/**
-		 * Jeffrey E.F. Friedl
-		 * Mastering Regular Expressions, 3rd Edition
-		 */
-		eraseTags: function(val) {
-			return val.replace(/<("[^"]*"|'[^']*'|[^'">])*>/gi, '');
-		},
-
-		equal: function(opt, val) {
-			return $(opt).val() === val;
-		},
-
-		/**
-		 * About all file extensions you can read here:
-		 * http://fileinfo.com/filetypes/common
-		 */
-		image: function(val) {
-			if (/.exe|.bat/.test(val)) return false;
-			return /[^\s]+(\.(jpe?g|png|gif|bmp))$/.test(val);
-		},
-
-		login: function(val) {
-			return /^([A-Za-z0-9_\.]+)?$/.test(val);
-		},
-
-		max: function(opt, val) {
-			return opt >= val.length
-		},
-
-		/**
-		 * I found the regular expression here:
-		 * http://www.regular-expressions.info/email.html
-		 */
-		email: function(val) {
-			return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
-		},
-
-		min: function(opt, val) {
-			return opt <= val.length
-		},
-
-		onlyRu: function(val) { 
-			return /^([а-яА-ЯёЁйЙ]+)?$/.test(val);
-		},
-
-		onlyEng: function(val) {
-			return /^([a-zA-Z]+)?$/.test(val);
-		},
-
-		pass: function(val) {
-			return /^([a-zA-Z0-9#?!@$%^&*-]+)?$/.test(val);
-		},
-
-		phone: function(val) {
-			return /^(((8|7|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10})?$/.test(val);
-		},
-
-		phoneOrMail: function(val) {
-			return (/^(((8|7|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10})?$/.test(val)) || 
-						 (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val));
-		},
-
-		required: function(val){
-			return !!val.length
-		},
-
-		time: function(val) {
-			return /^((((2[0-3]|[01]?[0-9]):([0-5][0-9]))|(24:00)))?$/.test(val);
-		},
-
-		url: function(val) {
-			return /^((http|https|ftp):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?)?$/.test(val);
-		},
-
-		/**
-		 * https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet
-		 * http://htmlpurifier.org/live/smoketests/xssAttacks.php
-		 */
-		xss: function(val) {
-			var htmlEscapes = {
-				'&' : '&apm;',
-				'<' : '&lt;',
-				'>' : '&gt;',
-				'"' : '&quot;',
-				"'" : '&#x27;'
-			};
-
-			return val.replace(/[&<>"']/g, function(match) {
-				return htmlEscapes[match];
-			});
-		}
-	};
-
-	var Validator = function (container, options) {
-		if (options) {
-			this.options = $.extend({}, defaults, options);
-		}
-
-		callbacks = $.extend({}, callbacks, this.options.callbacks);
-		this.container = container;
-		this._defaults = defaults;
-		this.init();
-	};
-
-	Validator.prototype.init = function() {
-		if ($.isEmptyObject(this.options)) {
-			// this._validate();
-		} else {
-			this._getElementsAndFilters();
-			this._getRules();
-			this._checkRules();
-			this._setEvents();
-			this._setFormSubmit();
-		}
-	};
-
-	Validator.prototype._getElementsAndFilters = function() {
-		var rules = this.rules = [];
-		var selectors = this.selectors = [];
-
-		for (var selector in this.options.filters) {
-			if (selector && typeof selector === 'string') {
-				selectors.push(selector);
-			} else {
-				throw new TypeError('Element name is empty or not a string!');
-			}
-
-			var rule = this.options.filters[selector];
-			if (rule && typeof selector === 'string') {
-				rules.push(rule);
-			} else {
-				throw new TypeError('Filter is empty or not a string!');
-			}
-		}
-	};
-
-	Validator.prototype._getRules = function() {
-		var context = this;
-		var rules = this.rules;
-
-		$.each(this.rules, function(i, value) {
-			rules[i] = context._proccessRules(rules[i]);
-		});
-	};
-
-	/**
-	 * This is a function for proccessing filters
-	 * Input: 'onlyEng|required|max:20'
-	 * Output: ['onlyEng', 'required', {filter:'max', val:'20'}]
-	 * @param {(object|string)} 
-	 * @returns ...
-	 */
-	Validator.prototype._proccessRules = function(rule) {
-		var rules = rule.replace(/\s+/g, '').split('|');
-
-		$.each(rules, function(j, value) {
-			if (value.match(/:/)) {
-				var dataRule = value.split(':');
-				rules.splice(
-					j, 1,
-					{
-						filter: dataRule[0],
-						val: dataRule[1]
-					}
-				);
-			}
-		});
-
-		return rules;
-	};
-
-	/**
-	 * Find user filters in filters array
-	 */
-	Validator.prototype._checkRules = function() {
-		$.each(this.rules, function(i, value) {
-			var j = value.length;
-			var data, filter;
-
-			while ( j-- ) {
-				data = value[j];
-				filter = typeof data === 'object' ? data.filter : data;
-				if (!(filter in filters)) {
-					throw new Error('The filter "' + filter + '" not found');
-				}
-			}
-		});
-	};
-
-	/**
-	 * Set events on all(!) input elements without
-	 * checkbox and radio button 
-	 */
-	Validator.prototype._setEvents = function() {
-		var events = this.options.events;
-		var messages = this.options.messages;
-		var check = this.check.bind(this);
-		var selectors = this.selectors;
-		var rules = this.rules;
-
-		if (events) {
-			$.each(events, function(event, status) {
-				if (status) {
-					$.each(selectors, function(i, el) {
-						var $el = $(el);
-						var type = $el.attr('type');
-						if ( type !== 'checkbox' && type !== 'radio' ) {
-							$el.on(event, function() {
-								var message = messages ? messages[i] : null;
-								check(el, rules[i], message, i);
-							});
-						}
-					});
-				}
-			});
-		}
-	};
-
-	Validator.prototype._setFormSubmit = function() {
-		var opt = this.options;
-		var ajax = opt.ajax;
-		var after = opt.after;
-		var before = opt.before;
-		var messages = opt.messages;
-		var autoClear = opt.autoClear;
-
-		var check = this.check.bind(this);
-		var selectors = this.selectors;
-		var resetStatus = this._resetStatus.bind(this);
-		var rules = this.rules;
-		var afterArg;
-
-		$(this.container).on('submit', function(e) {		
-			if (before) before();
-
-			var data, url;
-			var errors = 0;
-
-			$.each(selectors, function(i, el) {
-				var message = messages ? messages[i] : null;
-				var result = check(el, rules[i], message, i);
-				if (typeof result === 'boolean' && !result) {
-					errors++;
-				} else { 
-					afterArg = result; 
-				}
-			});
-
-			if (errors) return false;
-
-			if (ajax) {
-				e.preventDefault();
-
-				data = $(this).serialize();
-				url  = $(this).attr('action');
-
-				$.ajax({
-					type: 'post',
-					url: url,
-					data: data,
-					success: function() { ajax.success(); },
-					error:   function() { ajax.error(); },
-					complete: function() { if (after) after(afterArg); }
-				});
-			}
-
-			if (autoClear) {
-				$(this).find('input').each(function(i, input) {
-					var $input = $(input);
-					resetStatus($input);
-					$input.val('');
-				});
-
-				if (messages) {
-					messages.forEach(function(message) {
-						$(message.el).empty();
-					});
-				}
-			}
-		});
-	};
-
-	/**
-	 * Remove styles from input element
-	 * @param {jQuery} $el - this is an $(input) element
-	 */
-	Validator.prototype._resetStatus = function($el) {
-		if ($el.hasClass('invalid')) $el.removeClass('invalid');
-		if ($el.hasClass('valid')) $el.removeClass('valid');
-	};
-
-	Validator.prototype.check = function(el, rules, message, ij) {
-		var $el = $(el);
-		var j = rules.length;
-		var matching = false;
-		var $msg, type, rule, value, regExp, data;
-		var status, errIndex;
-
-		this._resetStatus($el);
-		value = $el.val();
-
-		/**
-		 * Check checkbox and radio buttons
-		 */
-		type = $el.attr('type');
-
-		if (type === 'radio' || type === 'checkbox') {
-			var checked = false;
-
-			$.each($el, function(i, el) {
-				if (el.checked) {
-					checked = true;
-					$el = $(el);
-				}
-			});
-
-			if (!checked) value = '';
-		}
-
-		while ( j-- ) {
-			rule = rules[j];
-
-			if (typeof rule === 'object') {
-				regExp = filters[rule.filter];
-				matching = regExp(rule.val, value);
-			} else {
-				regExp = filters[rule];
-				matching = regExp(value);
-			}
-			errIndex = j;
-			if (!matching) break;
-		}
-
-		$msg = this._getMessageContainer(ij);
-		status = matching ? 'valid' : 'invalid';
-
-		data = {
-			el: $el,
-			container: $msg,
-			message: message,
-			status: status,
-			errIndex: errIndex 
-		};
-
-		this._printMessage(data);
-		return matching;
-	};
-
-	Validator.prototype._getMessageContainer = function(i) {
-		var messages = this.options.messages;
-		return messages ? $(messages[i].el) : null;
-	};
-
-	Validator.prototype._printMessage = function(options) {
-		var opt = options;
-		var $el = opt.el;
-		var $msg = opt.container;
-		var status = opt.status;
-		var message = opt.message;
-		var errIndex = opt.errIndex;
-		var validation = status === 'invalid' ? 'valid' : 'invalid';
-		var msgstat = message ? message[status] : '';
-		var text;
-
-		if (typeof msgstat === 'object') {
-			text = msgstat[errIndex];
-		} else if (typeof msgstat === 'function') {
-			msgstat();
-		} else {
-			text = msgstat;
-		}
-
-		$el.addClass(status);
-
-		if ($msg) {
-			$msg.removeClass(validation)
-					.addClass(status)
-					.html(text);
-		}
-	};
-
-	$.fn[PLUGIN_NAME] = function (options) {
-		return this.each(function() {
-			if (!$.data(this, 'plugin_' + PLUGIN_NAME)) {
-				$.data(this, 'plugin_' + PLUGIN_NAME,
-				new Validator(this, options));
-			}
-		});
-	}
+  'use strict';
+
+  var PLUGIN_NAME = 'validator';
+
+  var defaults = {
+    autoClear: true
+  };
+
+  var callbacks;
+
+  /**
+   * It's access filters by default 
+   */
+  var filters = {
+    callback: function(opt, val) {
+      return callbacks[opt](val);
+    },
+
+    chars: function(val) {
+      return /^([а-яА-Яa-zA-Z]+)?$/.test(val);
+    },
+
+    color: function(val) {
+      return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(val);
+    },
+
+    /**
+     * I took the regular expression from here, 
+     * but I changed it since $(input[type="date"]).val() 
+     * returns the date in "yyyy-mm-dd" format.
+     * http://www.regular-expressions.info/dates.html
+     */
+    date: function(val) {
+      return /^(19|20)\d\d[-\s\/\.](0[1-9]|1[012])[-\s\/\.](0[1-9]|[12][0-9]|3[01])$/.test(val);
+    },
+
+    digits: function(val) {
+      return /^([0-9]+)?$/.test(val);
+    },
+
+    /**
+     * Jeffrey E.F. Friedl
+     * Mastering Regular Expressions, 3rd Edition
+     */
+    eraseTags: function(val) {
+      return val.replace(/<("[^"]*"|'[^']*'|[^'">])*>/gi, '');
+    },
+
+    equal: function(opt, val) {
+      return $(opt).val() === val;
+    },
+
+    /**
+     * About all file extensions you can read here:
+     * http://fileinfo.com/filetypes/common
+     */
+    image: function(val) {
+      if (/.exe|.bat/.test(val)) return false;
+      return /[^\s]+(\.(jpe?g|png|gif|bmp))$/.test(val);
+    },
+
+    login: function(val) {
+      return /^([A-Za-z0-9_\.]+)?$/.test(val);
+    },
+
+    max: function(opt, val) {
+      return opt >= val.length
+    },
+
+    /**
+     * I found the regular expression here:
+     * http://www.regular-expressions.info/email.html
+     */
+    email: function(val) {
+      return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
+    },
+
+    min: function(opt, val) {
+      return opt <= val.length || val.length === 0;
+    },
+
+    onlyRu: function(val) { 
+      return /^([а-яА-ЯёЁйЙ]+)?$/.test(val);
+    },
+
+    onlyEng: function(val) {
+      return /^([a-zA-Z]+)?$/.test(val);
+    },
+
+    pass: function(val) {
+      return /^([a-zA-Z0-9#?!@$%^&*-]+)?$/.test(val);
+    },
+
+    phone: function(val) {
+      return /^(((8|7|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10})?$/.test(val);
+    },
+
+    phoneOrMail: function(val) {
+      return (/^(((8|7|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10})?$/.test(val)) || 
+             (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val));
+    },
+
+    required: function(val){
+      return !!val.length
+    },
+
+    time: function(val) {
+      return /^((((2[0-3]|[01]?[0-9]):([0-5][0-9]))|(24:00)))?$/.test(val);
+    },
+
+    url: function(val) {
+      return /^((http|https|ftp):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?)?$/.test(val);
+    },
+
+    /**
+     * https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet
+     * http://htmlpurifier.org/live/smoketests/xssAttacks.php
+     */
+    xss: function(val) {
+      var htmlEscapes = {
+        '&' : '&apm;',
+        '<' : '&lt;',
+        '>' : '&gt;',
+        '"' : '&quot;',
+        "'" : '&#x27;'
+      };
+
+      return val.replace(/[&<>"']/g, function(match) {
+        return htmlEscapes[match];
+      });
+    }
+  };
+
+  var Validator = function (container, options) {
+    if (options) {
+      this.options = $.extend({}, defaults, options);
+    }
+
+    callbacks = $.extend({}, callbacks, this.options.callbacks);
+    this.container = container;
+    this._defaults = defaults;
+    this.init();
+  };
+
+  Validator.prototype.init = function() {
+    if ($.isEmptyObject(this.options)) {
+      // this._validate();
+    } else {
+      this._getElementsAndFilters();
+      this._getRules();
+      this._checkRules();
+      this._setEvents();
+      this._setFormSubmit();
+    }
+  };
+
+  Validator.prototype._getElementsAndFilters = function() {
+    var rules = this.rules = [];
+    var selectors = this.selectors = [];
+
+    for (var selector in this.options.filters) {
+      if (selector && typeof selector === 'string') {
+        selectors.push(selector);
+      } else {
+        throw new TypeError('Element name is empty or not a string!');
+      }
+
+      var rule = this.options.filters[selector];
+      if (rule && typeof selector === 'string') {
+        rules.push(rule);
+      } else {
+        throw new TypeError('Filter is empty or not a string!');
+      }
+    }
+  };
+
+  Validator.prototype._getRules = function() {
+    var context = this;
+    var rules = this.rules;
+
+    $.each(this.rules, function(i, value) {
+      rules[i] = context._proccessRules(rules[i]);
+    });
+  };
+
+  /**
+   * This is a function for proccessing filters
+   * Input: 'onlyEng|required|max:20'
+   * Output: ['onlyEng', 'required', {filter:'max', val:'20'}]
+   * @param {(object|string)} 
+   * @returns ...
+   */
+  Validator.prototype._proccessRules = function(rule) {
+    var rules = rule.replace(/\s+/g, '').split('|');
+
+    $.each(rules, function(j, value) {
+      if (value.match(/:/)) {
+        var dataRule = value.split(':');
+        rules.splice(
+          j, 1,
+          {
+            filter: dataRule[0],
+            val: dataRule[1]
+          }
+        );
+      }
+    });
+
+    return rules;
+  };
+
+  /**
+   * Find user filters in filters array
+   */
+  Validator.prototype._checkRules = function() {
+    $.each(this.rules, function(i, value) {
+      var j = value.length;
+      var data, filter;
+
+      while ( j-- ) {
+        data = value[j];
+        filter = typeof data === 'object' ? data.filter : data;
+        if (!(filter in filters)) {
+          throw new Error('The filter "' + filter + '" not found');
+        }
+      }
+    });
+  };
+
+  /**
+   * Set events on all(!) input elements without
+   * checkbox and radio button 
+   */
+  Validator.prototype._setEvents = function() {
+    var events = this.options.events;
+    var messages = this.options.messages;
+    var check = this.check.bind(this);
+    var selectors = this.selectors;
+    var rules = this.rules;
+
+    if (events) {
+      $.each(events, function(event, status) {
+        if (status) {
+          $.each(selectors, function(i, el) {
+            var $el = $(el);
+            var type = $el.attr('type');
+            if ( type !== 'checkbox' && type !== 'radio' ) {
+              $el.on(event, function() {
+                var message = messages ? messages[i] : null;
+                check(el, rules[i], message, i);
+              });
+            }
+          });
+        }
+      });
+    }
+  };
+
+  Validator.prototype._setFormSubmit = function() {
+    var opt = this.options;
+    var ajax = opt.ajax;
+    var after = opt.after;
+    var before = opt.before;
+    var messages = opt.messages;
+    var autoClear = opt.autoClear;
+
+    var check = this.check.bind(this);
+    var selectors = this.selectors;
+    var resetStatus = this._resetStatus.bind(this);
+    var rules = this.rules;
+    var afterArg;
+
+    $(this.container).on('submit', function(e) {    
+      if (before) before();
+
+      var data, url;
+      var errors = 0;
+
+      $.each(selectors, function(i, el) {
+        var message = messages ? messages[i] : null;
+        var result = check(el, rules[i], message, i);
+        if (typeof result === 'boolean' && !result) {
+          errors++;
+        } else { 
+          afterArg = result; 
+        }
+      });
+
+      if (errors) return false;
+
+      if (ajax) {
+        e.preventDefault();
+
+        data = $(this).serialize();
+        url  = $(this).attr('action');
+
+        $.ajax({
+          type: 'post',
+          url: url,
+          data: data,
+          success: function() { ajax.success(); },
+          error:   function() { ajax.error(); },
+          complete: function() { if (after) after(afterArg); }
+        });
+      }
+
+      if (autoClear) {
+        $(this).find('input').each(function(i, input) {
+          var $input = $(input);
+          resetStatus($input);
+          $input.val('');
+        });
+
+        if (messages) {
+          messages.forEach(function(message) {
+            $(message.el).empty();
+          });
+        }
+      }
+    });
+  };
+
+  /**
+   * Remove styles from input element
+   * @param {jQuery} $el - this is an $(input) element
+   */
+  Validator.prototype._resetStatus = function($el) {
+    if ($el.hasClass('invalid')) $el.removeClass('invalid');
+    if ($el.hasClass('valid')) $el.removeClass('valid');
+  };
+
+  Validator.prototype.check = function(el, rules, message, ij) {
+    var $el = $(el);
+    var j = rules.length;
+    var matching = false;
+    var $msg, type, rule, value, regExp, data;
+    var status, errIndex;
+
+    this._resetStatus($el);
+    value = $el.val();
+
+    /**
+     * Check checkbox and radio buttons
+     */
+    type = $el.attr('type');
+
+    if (type === 'radio' || type === 'checkbox') {
+      var checked = false;
+
+      $.each($el, function(i, el) {
+        if (el.checked) {
+          checked = true;
+          $el = $(el);
+        }
+      });
+
+      if (!checked) value = '';
+    }
+
+    while ( j-- ) {
+      rule = rules[j];
+
+      if (typeof rule === 'object') {
+        regExp = filters[rule.filter];
+        matching = regExp(rule.val, value);
+      } else {
+        regExp = filters[rule];
+        matching = regExp(value);
+      }
+      errIndex = j;
+      if (!matching) break;
+    }
+
+    $msg = this._getMessageContainer(ij);
+    status = matching ? 'valid' : 'invalid';
+
+    data = {
+      el: $el,
+      container: $msg,
+      message: message,
+      status: status,
+      errIndex: errIndex 
+    };
+
+    this._printMessage(data);
+    return matching;
+  };
+
+  Validator.prototype._getMessageContainer = function(i) {
+    var messages = this.options.messages;
+    return messages ? $(messages[i].el) : null;
+  };
+
+  Validator.prototype._printMessage = function(options) {
+    var opt = options;
+    var $el = opt.el;
+    var $msg = opt.container;
+    var status = opt.status;
+    var message = opt.message;
+    var errIndex = opt.errIndex;
+    var validation = status === 'invalid' ? 'valid' : 'invalid';
+    var msgstat = message ? message[status] : '';
+    var text;
+
+    if (typeof msgstat === 'object') {
+      text = msgstat[errIndex];
+    } else if (typeof msgstat === 'function') {
+      msgstat();
+    } else {
+      text = msgstat;
+    }
+
+    $el.addClass(status);
+
+    if ($msg) {
+      $msg.removeClass(validation)
+          .addClass(status)
+          .html(text);
+    }
+  };
+
+  $.fn[PLUGIN_NAME] = function (options) {
+    return this.each(function() {
+      if (!$.data(this, 'plugin_' + PLUGIN_NAME)) {
+        $.data(this, 'plugin_' + PLUGIN_NAME,
+        new Validator(this, options));
+      }
+    });
+  }
 }));

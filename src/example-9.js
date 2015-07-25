@@ -4,26 +4,26 @@
  */
 
 $(function() {
-	var ajax = {
-		success: function() {
-			alert('Success');
-		},
-		error: function() {
-			alert('Error');
-		}
-	};
+  var ajax = {
+    success: function() {
+      alert('Success');
+    },
+    error: function() {
+      alert('Error');
+    }
+  };
 
-	$('#example-9').validator({
-		autoClear: false,
-		before: function() {
-			alert('Before filter!');
-		},
-		after: function() {
-			alert('After filter!');
-		},
-		filters: {
-			'.pass9': 'pass | required'
-		},
-		ajax: ajax
-	});
+  $('#example-9').validator({
+    autoClear: false,
+    before: function() {
+      alert('Before filter!');
+    },
+    after: function() {
+      alert('After filter!');
+    },
+    filters: {
+      '.pass9': 'pass | required'
+    },
+    ajax: ajax
+  });
 });

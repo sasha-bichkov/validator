@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<meta charset="UTF-8">
-	<title>Validator</title>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/general.css">
-	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/monokai_sublime.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
-	<script>hljs.initHighlightingOnLoad();</script>
+  <meta charset="UTF-8">
+  <title>Validator</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/general.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/monokai_sublime.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </head>
-	<body>
-		<div class="ajax-status"></div>
-		<div class="wrapper"> <!-- WRAPPER -->
-			<section class="container"> <!-- CONTAINER -->
-				<h1>Validator</h1>
-				<!-- EXAMPLE-1 -->
-				<section class="row"> <!-- ROW -->
-					<h2>Example-1</h2>
-					<p>
-						This is an example of simple validation without output messages, events, ajax functions etc...<br><br>
+  <body>
+    <div class="ajax-status"></div>
+    <div class="wrapper"> <!-- WRAPPER -->
+      <section class="container"> <!-- CONTAINER -->
+        <h1>Validator</h1>
+        <!-- EXAMPLE-1 -->
+        <section class="row"> <!-- ROW -->
+          <h2>Example-1</h2>
+          <p>
+            This is an example of simple validation without output messages, events, ajax functions etc...<br><br>
 <pre><code class="javascript">
 /**
  * Example-1
@@ -27,41 +27,41 @@
  */
 
 $(function() {
-	$('#example-1').validator({
-		filters: {
-			'.login': 'required | login | min:3',
-			'.pass':  'required | pass  | min:3',
-			'.email': 'required | email'
-		}
-	});
+  $('#example-1').validator({
+    filters: {
+      '.login': 'required | login | min:3',
+      '.pass':  'required | pass  | min:3',
+      '.email': 'required | email'
+    }
+  });
 });
 
 </code></pre>
-						Click on "Send" button then fill all inputs and click again.
-					</p>
-					<form id="example-1" action="/example">
-						<label for="Login">Login: </label>
-						<input type="text" name="login" class="login" placeholder="Type login. Minimal 3 symbols">
-						<div class="login-mess"></div>
+            Click on "Send" button then fill all inputs and click again.
+          </p>
+          <form id="example-1" action="/example">
+            <label for="Login">Login: </label>
+            <input type="text" name="login" class="login" placeholder="Type login. Minimal 3 symbols">
+            <div class="login-mess"></div>
 
-						<label for="Password">Password: </label>
-						<input type="password" name="pass" class="pass">
-						<div class="pass-mess"></div>
+            <label for="Password">Password: </label>
+            <input type="password" name="pass" class="pass">
+            <div class="pass-mess"></div>
 
-						<label for="Email">Email: </label>
-						<input type="email" name="email" class="email" placeholder="Type email">
-						<div class="email-mess"></div>
+            <label for="Email">Email: </label>
+            <input type="email" name="email" class="email" placeholder="Type email">
+            <div class="email-mess"></div>
 
-						<button type="submit" class="send">Send</button>
-					</form>
-				</section> <!-- ROW END -->
+            <button type="submit" class="send">Send</button>
+          </form>
+        </section> <!-- ROW END -->
 
-				<!-- EXAMPLE-2 -->
-				<section class="row"> <!-- ROW -->
-					<h2>Example-2</h2>
-					<p>
-						In this example you can see output messages for valid and invalid
-						values.<br><br>
+        <!-- EXAMPLE-2 -->
+        <section class="row"> <!-- ROW -->
+          <h2>Example-2</h2>
+          <p>
+            In this example you can see output messages for valid and invalid
+            values.<br><br>
 <pre><code class="javascript">
 /**
  * Example-2
@@ -69,67 +69,67 @@ $(function() {
  */
 
 $(function() {
-	var messages = [
-		{
-			el: '.login-2',
-			valid: 'Good!',
-			invalid: [
-				'Login must be required',
-				'Login contain chars, digits, "." and "_"',
-				'Minimal length is 3 symbols'
-			]
-		},
-		{
-			el: '.pass-2',
-			valid: 'Good!',
-			invalid: [
-				'Password must be required',
-				'Login contain chars, digits, "." and "_"',
-				'Minimal length is 3 symbols'
-			]
-		},
-		{
-			el: '.email-2',
-			valid: 'Good!',
-			invalid: 'Email isn\'t correct!'
-		}
-	];
+  var messages = [
+    {
+      el: '.login-2',
+      valid: 'Good!',
+      invalid: [
+        'Login must be required',
+        'Login contain chars, digits, "." and "_"',
+        'Minimal length is 3 symbols'
+      ]
+    },
+    {
+      el: '.pass-2',
+      valid: 'Good!',
+      invalid: [
+        'Password must be required',
+        'Login contain chars, digits, "." and "_"',
+        'Minimal length is 3 symbols'
+      ]
+    },
+    {
+      el: '.email-2',
+      valid: 'Good!',
+      invalid: 'Email isn\'t correct!'
+    }
+  ];
 
-	$('#example-2').validator({
-		filters: {
-			'.login2': 'required | login | min:3',
-			'.pass2':  'required | pass  | min:3',
-			'.email2': 'required | email'
-		},
-		messages: messages
-	});
+  $('#example-2').validator({
+    filters: {
+      '.login2': 'required | login | min:3',
+      '.pass2':  'required | pass  | min:3',
+      '.email2': 'required | email'
+    },
+    messages: messages
+  });
 });
 
 </code></pre>
-						Click on "Send" button then fill all inputs and click again.
-					</p>
-					<form id="example-2" action="/example">
-						<label for="Login">Login: </label>
-						<input type="text" name="login" class="login2">
-						<div class="login-2"></div>
+            Click on "Send" button then fill all inputs and click again.
+          </p>
+          <form id="example-2" action="/example">
+            <label for="Login">Login: </label>
+            <input type="text" name="login" class="login2">
+            <div class="login-2"></div>
 
-						<label for="Password">Password: </label>
-						<input type="password" name="pass" class="pass2">
-						<div class="pass-2"></div>
+            <label for="Password">Password: </label>
+            <input type="password" name="pass" class="pass2">
+            <div class="pass-2"></div>
 
-						<label for="Email">Email: </label>
-						<input type="email" name="email" class="email2">
-						<div class="email-2"></div>
+            <label for="Email">Email: </label>
+            <input type="email" name="email" class="email2">
+            <div class="email-2"></div>
 
-						<button type="submit" class="send">Send</button>
-					</form>
-				</section> <!-- ROW END -->
+            <button type="submit" class="send">Send</button>
+          </form>
+        </section> <!-- ROW END -->
 
-				<!-- EXAMPLE-3 -->
-				<section class="row"> <!-- ROW -->
-					<h2>Example-3</h2>
-					<p>
-						This example uses ajax and shows mark instead of text message<br>
+        <!-- EXAMPLE-3 -->
+        <section class="row"> <!-- ROW -->
+          <h2>Example-3</h2>
+          <p>
+            This example uses ajax and shows mark instead of text message<br>
 <pre><code class="javascript">
 /**
  * Example-3
@@ -138,88 +138,88 @@ $(function() {
  */
 
 $(function() {
-	var messages = [
-		{
-			/**
-			 * If input value is valid you can add preloader 
-			 * and send data to the server that check this 
-			 * value on uniq in data base. To do it you must 
-			 * write ajax function here.
-			 */
-			valid: function() {
-				showSuccessIcon('.login-3');
-			},
-			invalid: function() {
-				/**
-				 * You can also print an error message here
-				 */
-				showErrorIcon('.login-3');
-			}
-		},
-		{
-			valid: function() {
-				showSuccessIcon('.pass-3');
-			},
-			invalid: function() {
-				showErrorIcon('.pass-3');
-			}
-		},
-		{
-			valid: function() {
-				showSuccessIcon('.email-3');
-			},
-			invalid: function() {
-				showErrorIcon('.email-3');
-			}
-		}
-	];
+  var messages = [
+    {
+      /**
+       * If input value is valid you can add preloader 
+       * and send data to the server that check this 
+       * value on uniq in data base. To do it you must 
+       * write ajax function here.
+       */
+      valid: function() {
+        showSuccessIcon('.login-3');
+      },
+      invalid: function() {
+        /**
+         * You can also print an error message here
+         */
+        showErrorIcon('.login-3');
+      }
+    },
+    {
+      valid: function() {
+        showSuccessIcon('.pass-3');
+      },
+      invalid: function() {
+        showErrorIcon('.pass-3');
+      }
+    },
+    {
+      valid: function() {
+        showSuccessIcon('.email-3');
+      },
+      invalid: function() {
+        showErrorIcon('.email-3');
+      }
+    }
+  ];
 
-	var ajax = {
-		success: function() {
-			showStatus('success');
-		},
-		error: function() {
-			showStatus('error');
-		}
-	};
+  var ajax = {
+    success: function() {
+      showStatus('success');
+    },
+    error: function() {
+      showStatus('error');
+    }
+  };
 
-	$('#example-3').validator({
-		autoClear: false,
-		filters: {
-			'.login3': 'required | login | min:3',
-			'.pass3':  'required | pass  | min:3',
-			'.email3': 'required | email'
-		},
-		ajax: ajax,
-		messages: messages
-	});
+  $('#example-3').validator({
+    autoClear: false,
+    filters: {
+      '.login3': 'required | login | min:3',
+      '.pass3':  'required | pass  | min:3',
+      '.email3': 'required | email'
+    },
+    ajax: ajax,
+    messages: messages
+  });
 });
 
 </code></pre>
-						Click on "Send" button then fill all inputs and click again.
-					</p>
-					<form id="example-3" action="/example">
-						<label for="Login">Login: </label>
-						<input type="text" name="login" class="login3">
-						<div class="login-3"></div>
+            Click on "Send" button then fill all inputs and click again.
+          </p>
+          <form id="example-3" action="/example">
+            <label for="Login">Login: </label>
+            <input type="text" name="login" class="login3">
+            <div class="login-3"></div>
 
-						<label for="Password">Password: </label>
-						<input type="password" name="pass" class="pass3">
-						<div class="pass-3"></div>
+            <label for="Password">Password: </label>
+            <input type="password" name="pass" class="pass3">
+            <div class="pass-3"></div>
 
-						<label for="Email">Email: </label>
-						<input type="email" name="email" class="email3">
-						<div class="email-3"></div>
+            <label for="Email">Email: </label>
+            <input type="email" name="email" class="email3">
+            <div class="email-3"></div>
 
-						<button type="submit" class="send">Send</button>
-					</form>
-				</section> <!-- ROW END -->
+            <button type="submit" class="send">Send</button>
+          </form>
+        </section> <!-- ROW END -->
 
-				<!-- EXAMPLE-4 -->
-				<section class="row"> <!-- ROW -->
-					<h2>Example-4</h2>
-					<p>
-						In this example you can see how the keyup events work.<br><br>
+        <!-- EXAMPLE-4 -->
+        <section class="row"> <!-- ROW -->
+          <h2>Example-4</h2>
+          <p>
+            In this example you can see how the keyup events work.<br><br>
 <pre><code class="javascript">
 /**
  * Example-4
@@ -228,81 +228,81 @@ $(function() {
  */
 
 $(function() {
-	var messages = [
-		{
-			el: '.login-4',
-			valid: 'Good!',
-			invalid: [
-				'Login must be required',
-				'Login contain chars, digits, "." and "_"',
-				'Minimal length is 3 symbols'
-			]
-		},
-		{
-			el: '.pass-4',
-			valid: 'Good!',
-			invalid: [
-				'Password must be required',
-				'Login contain chars, digits, "." and "_"',
-				'Minimal length is 3 symbols'
-			]
-		},
-		{
-			el: '.email-4',
-			valid: 'Good!',
-			invalid: 'Email isn\'t correct!'
-		}
-	];
+  var messages = [
+    {
+      el: '.login-4',
+      valid: 'Good!',
+      invalid: [
+        'Login must be required',
+        'Login contain chars, digits, "." and "_"',
+        'Minimal length is 3 symbols'
+      ]
+    },
+    {
+      el: '.pass-4',
+      valid: 'Good!',
+      invalid: [
+        'Password must be required',
+        'Login contain chars, digits, "." and "_"',
+        'Minimal length is 3 symbols'
+      ]
+    },
+    {
+      el: '.email-4',
+      valid: 'Good!',
+      invalid: 'Email isn\'t correct!'
+    }
+  ];
 
-	var ajax = {
-		success: function() {
-			showStatus('success');
-		},
-		error: function() {
-			showStatus('error');
-		}
-	};
+  var ajax = {
+    success: function() {
+      showStatus('success');
+    },
+    error: function() {
+      showStatus('error');
+    }
+  };
 
-	var events = { 'keyup': true }; //you can add more events
+  var events = { 'keyup': true }; //you can add more events
 
-	$('#example-4').validator({
-		autoClear: false,
-		filters: {
-			'.login4': 'required | login | min:3',
-			'.pass4':  'required | pass  | min:3',
-			'.email4': 'required | email'
-		},
-		ajax: ajax,
-		events: events,
-		messages: messages
-	});
+  $('#example-4').validator({
+    autoClear: false,
+    filters: {
+      '.login4': 'required | login | min:3',
+      '.pass4':  'required | pass  | min:3',
+      '.email4': 'required | email'
+    },
+    ajax: ajax,
+    events: events,
+    messages: messages
+  });
 });
 
 </code></pre>
-						Type anything in input.
-					</p>
-					<form id="example-4" action="/example">
-						<label for="Login">Login: </label>
-						<input type="text" name="login" class="login4">
-						<div class="login-4"></div>
+            Type anything in input.
+          </p>
+          <form id="example-4" action="/example">
+            <label for="Login">Login: </label>
+            <input type="text" name="login" class="login4">
+            <div class="login-4"></div>
 
-						<label for="Password">Password: </label>
-						<input type="password" name="pass" class="pass4">
-						<div class="pass-4"></div>
+            <label for="Password">Password: </label>
+            <input type="password" name="pass" class="pass4">
+            <div class="pass-4"></div>
 
-						<label for="Email">Email: </label>
-						<input type="email" name="email" class="email4">
-						<div class="email-4"></div>
+            <label for="Email">Email: </label>
+            <input type="email" name="email" class="email4">
+            <div class="email-4"></div>
 
-						<button type="submit" class="send">Send</button>
-					</form>
-				</section> <!-- ROW END -->
+            <button type="submit" class="send">Send</button>
+          </form>
+        </section> <!-- ROW END -->
 
-				<!-- EXAMPLE-5 -->
-				<section class="row"> <!-- ROW -->
-					<h2>Example-5</h2>
-					<p>
-						This example demonstrates the work of <em>equal</em> filter<br><br>
+        <!-- EXAMPLE-5 -->
+        <section class="row"> <!-- ROW -->
+          <h2>Example-5</h2>
+          <p>
+            This example demonstrates the work of <em>equal</em> filter<br><br>
 <pre><code class="javascript">
 /**
  * Example-5
@@ -310,58 +310,58 @@ $(function() {
  */
 
 $(function() {
-	messages = [
-		{
-			el: '.pass-51',
-			valid: 'Good!',
-			invalid: [
-				'Password must be required',
-				'Passwords don\'t equal'
-			]
-		},
-		{
-			el: '.pass-52',
-			valid: 'Good!',
-			invalid: [
-				'Password must be required',
-				'Passwords don\'t equal'
-			]
-		}
-	];
+  messages = [
+    {
+      el: '.pass-51',
+      valid: 'Good!',
+      invalid: [
+        'Password must be required',
+        'Passwords don\'t equal'
+      ]
+    },
+    {
+      el: '.pass-52',
+      valid: 'Good!',
+      invalid: [
+        'Password must be required',
+        'Passwords don\'t equal'
+      ]
+    }
+  ];
 
-	$('#example-5').validator({
-		filters: {
-			'.pass51': 'required | equal:.pass52',
-			'.pass52': 'required | equal:.pass51'
-		},
-		messages: messages
-	});
+  $('#example-5').validator({
+    filters: {
+      '.pass51': 'required | equal:.pass52',
+      '.pass52': 'required | equal:.pass51'
+    },
+    messages: messages
+  });
 });
 
 </code></pre>
-						Click on "Send" button then fill all inputs and click again.
-					</p>
-					<form id="example-5" action="/example">
-						<label for="Password">Password: </label>
-						<input type="password" name="pass" class="pass51">
-						<div class="pass-51"></div>
+            Click on "Send" button then fill all inputs and click again.
+          </p>
+          <form id="example-5" action="/example">
+            <label for="Password">Password: </label>
+            <input type="password" name="pass" class="pass51">
+            <div class="pass-51"></div>
 
-						<label for="Password">Confirm password: </label>
-						<input type="password" name="pass" class="pass52">
-						<div class="pass-52"></div>
+            <label for="Password">Confirm password: </label>
+            <input type="password" name="pass" class="pass52">
+            <div class="pass-52"></div>
 
-						<button type="submit" class="send">Send</button>
-					</form>
-				</section> <!-- ROW END -->
+            <button type="submit" class="send">Send</button>
+          </form>
+        </section> <!-- ROW END -->
 
-				<!-- EXAMPLE-6 -->
-				<section class="row"> <!-- ROW -->
-					<h2>Example-6</h2>
-					<p>
-						In this example you can see how to use <b>'callbacks'</b> options and
-						write your own filters. The filter is named 'MoreThan10' thus you should
-						write a number > 10 or you'll get an error. Read more about using it in README.md
-						on github or see 'src/example-6.js' to understand it better.
+        <!-- EXAMPLE-6 -->
+        <section class="row"> <!-- ROW -->
+          <h2>Example-6</h2>
+          <p>
+            In this example you can see how to use <b>'callbacks'</b> options and
+            write your own filters. The filter is named 'MoreThan10' thus you should
+            write a number > 10 or you'll get an error. Read more about using it in README.md
+            on github or see 'src/example-6.js' to understand it better.
 <pre><code class="javascript">
 /**
  * Example-6
@@ -370,67 +370,67 @@ $(function() {
  */
 
 $(function() {
-	var messages = [
-		{
-			el: '.number-1',
-			valid: 'Good!',
-			invalid: 'Number must be more than 10'
-		}
-	];
+  var messages = [
+    {
+      el: '.number-1',
+      valid: 'Good!',
+      invalid: 'Number must be more than 10'
+    }
+  ];
 
-	var ajax = {
-		success: function() {
-			showStatus('success');
-		},
+  var ajax = {
+    success: function() {
+      showStatus('success');
+    },
 
-		error: function() {
-			showStatus('error');
-		}
-	};
+    error: function() {
+      showStatus('error');
+    }
+  };
 
-	/**
-	 * There are our callbacks function
-	 */
-	var callbacks = {
-		MoreThan10: function(val) {
-			return val > 10;
-		}
-	};
+  /**
+   * There are our callbacks function
+   */
+  var callbacks = {
+    MoreThan10: function(val) {
+      return val > 10;
+    }
+  };
 
-	$('#example-6').validator({
-		autoClear: false,
-		filters: {
-		/**
-		 * You can use more callbacks
-		 * callback:first | callback:second | callback:third | etc...
-		 */
-			'.number': 'callback:MoreThan10',
-		},
-		ajax: ajax,
-		messages: messages,
-		callbacks: callbacks
-	});
+  $('#example-6').validator({
+    autoClear: false,
+    filters: {
+    /**
+     * You can use more callbacks
+     * callback:first | callback:second | callback:third | etc...
+     */
+      '.number': 'callback:MoreThan10',
+    },
+    ajax: ajax,
+    messages: messages,
+    callbacks: callbacks
+  });
 });
 
 </code></pre>
-					</p>
-					<form id="example-6" action="/example">
-						<label for="number">Number: </label>
-						<input type="number" name="number" class="number">
-						<div class="number-1"></div>
+          </p>
+          <form id="example-6" action="/example">
+            <label for="number">Number: </label>
+            <input type="number" name="number" class="number">
+            <div class="number-1"></div>
 
-						<button type="submit" class="send">Send</button>
-					</form>
-				</section> <!-- ROW END -->
+            <button type="submit" class="send">Send</button>
+          </form>
+        </section> <!-- ROW END -->
 
-				<!-- EXAMPLE-7 -->
-				<section class="row"> <!-- ROW -->
-					<h2>Example-7</h2>
-					<p>
-						If you write a guest book or a forum then your users can write his
-						own messages, so you must protect your site. Validator gives you
-						'xss' processing-filter which proccess value of textarea field and you
-						can use this data in 'after' or 'before' functions (See the details below).<br><br>
+        <!-- EXAMPLE-7 -->
+        <section class="row"> <!-- ROW -->
+          <h2>Example-7</h2>
+          <p>
+            If you write a guest book or a forum then your users can write his
+            own messages, so you must protect your site. Validator gives you
+            'xss' processing-filter which proccess value of textarea field and you
+            can use this data in 'after' or 'before' functions (See the details below).<br><br>
 <pre><code class="javascript">
 /**
  * Example-7
@@ -440,52 +440,52 @@ $(function() {
  */
 
 $(function() {
-	var ajax = {
-		success: function() {
-			showStatus('success');
-		},
-		error: function() {
-			showStatus('error');
-		}
-	};
+  var ajax = {
+    success: function() {
+      showStatus('success');
+    },
+    error: function() {
+      showStatus('error');
+    }
+  };
 
-	var events = { 'keyup': true };
+  var events = { 'keyup': true };
 
-	$('#example-7').validator({
-		autoClear: false,
-		filters: {
-			'#text': 'xss | required'
-		},
-		/**
-		 * Text was processed by filter 'xss'
-		 */
-		after: function(text) {
-			$('.textarea-message').html(text);
-		},
-		ajax: ajax,
-		events: events
-	});
+  $('#example-7').validator({
+    autoClear: false,
+    filters: {
+      '#text': 'xss | required'
+    },
+    /**
+     * Text was processed by filter 'xss'
+     */
+    after: function(text) {
+      $('.textarea-message').html(text);
+    },
+    ajax: ajax,
+    events: events
+  });
 });
 
 </code></pre>
-						Click on "Send" button.
-					</p>
-					<form id="example-7" action="/example">
-						<textarea id="text">&lt;script&gt;alert('XSS');&lt;&#x2F;script&gt;</textarea>
-						<div class="textarea-status"></div>
-						<div class="textarea-message"></div>
-						<button type="submit" class="send">Send</button>
-					</form>
-				</section> <!-- ROW END -->
+            Click on "Send" button.
+          </p>
+          <form id="example-7" action="/example">
+            <textarea id="text">&lt;script&gt;alert('XSS');&lt;&#x2F;script&gt;</textarea>
+            <div class="textarea-status"></div>
+            <div class="textarea-message"></div>
+            <button type="submit" class="send">Send</button>
+          </form>
+        </section> <!-- ROW END -->
 
-				<!-- EXAMPLE-8 -->
-				<section class="row"> <!-- ROW -->
-					<h2>Example-8</h2>
-					<p>
-						Validator also gives you 'eraseTags' processing-filter which can be used for 
-						deleting all html-tags. If you need a filter for deleting all bbCode you
-						should write it yourself. You can rename original function 'eraseTags' to 'eraseBBCode' 
-						and modify it for using it as a callback : '.textarea': 'callback:eraseBBCode'.<br><br>
+        <!-- EXAMPLE-8 -->
+        <section class="row"> <!-- ROW -->
+          <h2>Example-8</h2>
+          <p>
+            Validator also gives you 'eraseTags' processing-filter which can be used for 
+            deleting all html-tags. If you need a filter for deleting all bbCode you
+            should write it yourself. You can rename original function 'eraseTags' to 'eraseBBCode' 
+            and modify it for using it as a callback : '.textarea': 'callback:eraseBBCode'.<br><br>
 <pre><code class="javascript">
 /**
  * Example-8
@@ -493,50 +493,50 @@ $(function() {
  */
 
 $(function() {
-	var ajax = {
-		success: function() {
-			showStatus('success');
-		},
-		error: function() {
-			showStatus('error');
-		}
-	};
+  var ajax = {
+    success: function() {
+      showStatus('success');
+    },
+    error: function() {
+      showStatus('error');
+    }
+  };
 
-	$('#example-8').validator({
-		autoClear: false,
-		filters: {
-			'#text2': 'eraseTags | required'
-		},
-		/**
-		 * Text was processed by filter 'eraseTags'
-		 * We courageously put it into html
-		 */
-		after: function(text) {
-			$('.textarea-message2').html(text);
-		},
-		ajax: ajax
-	});
+  $('#example-8').validator({
+    autoClear: false,
+    filters: {
+      '#text2': 'eraseTags | required'
+    },
+    /**
+     * Text was processed by filter 'eraseTags'
+     * We courageously put it into html
+     */
+    after: function(text) {
+      $('.textarea-message2').html(text);
+    },
+    ajax: ajax
+  });
 });
 
 </code></pre>
-						Click on "Send" button.
-					</p>
-					<form id="example-8" action="/example">
-						<textarea id="text2">&lt;html&gt;&lt;head&gt;&lt;script&gt;alert('XSS');&lt;&#x2F;script&gt;&lt;&#x2F;head&gt;&lt;body&gt;BODY&lt;&#x2F;body&gt;&lt;&#x2F;html&gt;</textarea>
-						<div class="textarea-status2"></div>
-						<div class="textarea-message2"></div>
-						<button type="submit" class="send">Send</button>
-					</form>
-				</section> <!-- ROW END -->
+            Click on "Send" button.
+          </p>
+          <form id="example-8" action="/example">
+            <textarea id="text2">&lt;html&gt;&lt;head&gt;&lt;script&gt;alert('XSS');&lt;&#x2F;script&gt;&lt;&#x2F;head&gt;&lt;body&gt;BODY&lt;&#x2F;body&gt;&lt;&#x2F;html&gt;</textarea>
+            <div class="textarea-status2"></div>
+            <div class="textarea-message2"></div>
+            <button type="submit" class="send">Send</button>
+          </form>
+        </section> <!-- ROW END -->
 
-				<!-- EXAMPLE-9 -->
-				<section class="row"> <!-- ROW -->
-					<h2>Example-9</h2>
-					<p>
-						This example shows how events 'after' and 'before' with
-						ajax events 'success' and 'error' work. You can do anything in ajax functions,
-						but you'll probably want to do something in them 'before' (or 'after') 
-						validation and send data to server.<br><br>
+        <!-- EXAMPLE-9 -->
+        <section class="row"> <!-- ROW -->
+          <h2>Example-9</h2>
+          <p>
+            This example shows how events 'after' and 'before' with
+            ajax events 'success' and 'error' work. You can do anything in ajax functions,
+            but you'll probably want to do something in them 'before' (or 'after') 
+            validation and send data to server.<br><br>
 <pre><code class="javascript">
 /**
  * Example-9
@@ -544,46 +544,46 @@ $(function() {
  */
 
 $(function() {
-	var ajax = {
-		success: function() {
-			alert('Success');
-		},
-		error: function() {
-			alert('Error');
-		}
-	};
+  var ajax = {
+    success: function() {
+      alert('Success');
+    },
+    error: function() {
+      alert('Error');
+    }
+  };
 
-	$('#example-9').validator({
-		autoClear: false,
-		before: function() {
-			alert('Before filter!');
-		},
-		after: function() {
-			alert('After filter!');
-		},
-		filters: {
-			'.pass9': 'pass | required'
-		},
-		ajax: ajax
-	});
+  $('#example-9').validator({
+    autoClear: false,
+    before: function() {
+      alert('Before filter!');
+    },
+    after: function() {
+      alert('After filter!');
+    },
+    filters: {
+      '.pass9': 'pass | required'
+    },
+    ajax: ajax
+  });
 });
 
 </code></pre>
-						Click on "Send" button.
-					</p>
-					<form id="example-9" action="/example">
-						<label for="Password">Password: </label>
-						<input type="password" name="pass" class="pass9">
-						<button type="submit" class="send">Send</button>
-					</form>
-				</section> <!-- ROW END -->
+            Click on "Send" button.
+          </p>
+          <form id="example-9" action="/example">
+            <label for="Password">Password: </label>
+            <input type="password" name="pass" class="pass9">
+            <button type="submit" class="send">Send</button>
+          </form>
+        </section> <!-- ROW END -->
 
-				<!-- EXAMPLE-10 -->
-				<section class="row"> <!-- ROW -->
-					<h2>Example-10</h2>
-					<p>
-						In this example we use radio and checkbox button. You
-						can validate even these html elements with Validator!<br><br>
+        <!-- EXAMPLE-10 -->
+        <section class="row"> <!-- ROW -->
+          <h2>Example-10</h2>
+          <p>
+            In this example we use radio and checkbox button. You
+            can validate even these html elements with Validator!<br><br>
 <pre><code class="javascript">
 /**
  * Example-10
@@ -591,80 +591,80 @@ $(function() {
  */
 
 $(function() {
-	$('#example-10').validator({
-		autoClear: false,
+  $('#example-10').validator({
+    autoClear: false,
 
-		filters: {
-			'#select-value':   'required',
-			'.checkboxbutton': 'required',
-			'.radiobutton':    'required'
-		},
+    filters: {
+      '#select-value':   'required',
+      '.checkboxbutton': 'required',
+      '.radiobutton':    'required'
+    },
 
-		messages: [
-			{
-				el: '.select-message',
-				valid: 'Good!',
-				invalid: 'Choose select value'
-			},
-			{
-				el: '.checkboxes-message',
-				valid: 'Good!',
-				invalid: 'Choose checkbox'
-			},
-			{
-				el: '.radious-message',
-				valid: 'Good!',
-				invalid: 'Choose radio'
-			}
-		],
+    messages: [
+      {
+        el: '.select-message',
+        valid: 'Good!',
+        invalid: 'Choose select value'
+      },
+      {
+        el: '.checkboxes-message',
+        valid: 'Good!',
+        invalid: 'Choose checkbox'
+      },
+      {
+        el: '.radious-message',
+        valid: 'Good!',
+        invalid: 'Choose radio'
+      }
+    ],
 
-		ajax: {
-			success: function() {
-				showStatus('success');
-			},
-			error: function() {
-				showStatus('error');
-			}
-		}
-	});
+    ajax: {
+      success: function() {
+        showStatus('success');
+      },
+      error: function() {
+        showStatus('error');
+      }
+    }
+  });
 });
 
 </code></pre>
-					</p>
-					<form id="example-10" action="/example">
-						<select name="" id="select-value">
-							<option>VALUE-1</option>
-							<option>VALUE-2</option>
-							<option>VALUE-3</option>
-						</select>
-						<div class="select-message"></div>
-						<div class="blocks">
-							<div class="checkboxes-block">
-								<input type="checkbox" name="checkbox-group" class="checkboxbutton"> VALUE-1 <br />
-								<input type="checkbox" name="checkbox-group" class="checkboxbutton"> VALUE-2 <br />
-								<input type="checkbox" name="checkbox-group" class="checkboxbutton"> VALUE-3 <br />
-								<div class="checkboxes-message"></div>
-							</div>
+          </p>
+          <form id="example-10" action="/example">
+            <select name="" id="select-value">
+              <option>VALUE-1</option>
+              <option>VALUE-2</option>
+              <option>VALUE-3</option>
+            </select>
+            <div class="select-message"></div>
+            <div class="blocks">
+              <div class="checkboxes-block">
+                <input type="checkbox" name="checkbox-group" class="checkboxbutton"> VALUE-1 <br />
+                <input type="checkbox" name="checkbox-group" class="checkboxbutton"> VALUE-2 <br />
+                <input type="checkbox" name="checkbox-group" class="checkboxbutton"> VALUE-3 <br />
+                <div class="checkboxes-message"></div>
+              </div>
 
-							<div class="radious-block">
-								<input type="radio" name="radio-group" class="radiobutton"> VALUE-1 <br />
-								<input type="radio" name="radio-group" class="radiobutton"> VALUE-2 <br />
-								<input type="radio" name="radio-group" class="radiobutton"> VALUE-3 <br />
-								<div class="radious-message"></div>
-							</div>
-						</div>
+              <div class="radious-block">
+                <input type="radio" name="radio-group" class="radiobutton"> VALUE-1 <br />
+                <input type="radio" name="radio-group" class="radiobutton"> VALUE-2 <br />
+                <input type="radio" name="radio-group" class="radiobutton"> VALUE-3 <br />
+                <div class="radious-message"></div>
+              </div>
+            </div>
 
-						<button type="submit" class="send">Send</button>
-					</form>
-				</section> <!-- ROW END -->
-				
-				<!-- EXAMPLE-11 -->
-				<section class="row"> <!-- ROW -->
-					<h2>Example-11</h2>
-					<p>
-						This is a simple function for determining password's complexity. It's not a default processing-filter,
-						it was written with use 'callback' filter which takes one parameter. You have to write similar function by yourself .
-						You set the callbacks option and take your callback functions to it for using it as a filter later.<br>
+            <button type="submit" class="send">Send</button>
+          </form>
+        </section> <!-- ROW END -->
+        
+        <!-- EXAMPLE-11 -->
+        <section class="row"> <!-- ROW -->
+          <h2>Example-11</h2>
+          <p>
+            This is a simple function for determining password's complexity. It's not a default processing-filter,
+            it was written with use 'callback' filter which takes one parameter. You have to write similar function by yourself .
+            You set the callbacks option and take your callback functions to it for using it as a filter later.<br>
 <pre><code class="javascript">
 /**
  * Example-11
@@ -672,119 +672,119 @@ $(function() {
  */
 
 $(function() {
-	var ajax = {
-		success: function() {
-			showStatus('success');
-		},
-		error: function() {
-			showStatus('error');
-		}
-	};
+  var ajax = {
+    success: function() {
+      showStatus('success');
+    },
+    error: function() {
+      showStatus('error');
+    }
+  };
 
-	var callbacks = {
-		passAdvise: function(val) {
-			var complexity;
-			var chars = /[a-zA-Z]+/;
-			var digits = /[0-9]+/;
-			var special = /[@#%\!\$\^\&\(\)\[\]\{\}\*\+\.]+/;
+  var callbacks = {
+    passAdvise: function(val) {
+      var complexity;
+      var chars = /[a-zA-Z]+/;
+      var digits = /[0-9]+/;
+      var special = /[@#%\!\$\^\&\(\)\[\]\{\}\*\+\.]+/;
 
-			if (chars.test(val) || digits.test(val) || special.test(val)) complexity = 'Eazy'
-			if (chars.test(val) && digits.test(val)) complexity = 'Medium'
-			if (chars.test(val) && digits.test(val) && special.test(val)) complexity = 'Hard'
+      if (chars.test(val) || digits.test(val) || special.test(val)) complexity = 'Eazy'
+      if (chars.test(val) && digits.test(val)) complexity = 'Medium'
+      if (chars.test(val) && digits.test(val) && special.test(val)) complexity = 'Hard'
 
-			alert(complexity);
-			if (complexity === 'Eazy' || complexity === 'Medium') return false; //Stop validate
-			return true; //continue validate
-		}
-	};
+      alert(complexity);
+      if (complexity === 'Eazy' || complexity === 'Medium') return false; //Stop validate
+      return true; //continue validate
+    }
+  };
 
-	$('#example-11').validator({
-		autoClear: false,
-		filters: {
-			'.pass-hard': 'callback:passAdvise | required'
-		},
-		ajax: ajax,
-		callbacks: callbacks
-	});
+  $('#example-11').validator({
+    autoClear: false,
+    filters: {
+      '.pass-hard': 'callback:passAdvise | required'
+    },
+    ajax: ajax,
+    callbacks: callbacks
+  });
 });
 
 </code></pre>
 
-						If your callback function return false value than validation was stopped. Otherwise it proceeds... 
-						The filter I named 'passAdvise'. It's a very simple function,
-						but this example is necessary to demonstrate interactions with inputs data in plugin context.
-						Here's how it works:<br>
-						<ul>
-							<li>If password you typed contains only characters and is not complex, the password will be rejected.</li>
-							<li>If password you typed contains only characters or digits and is not complex, the password will be rejected.</li>
-							<li>If password you typed contains at least one character, one special symbol. one digit symbol, 
-							it will be sent to the server</li>
-						</ul>
-					</p>
-					<form id="example-11" action="/example">
-						<label for="pass">Password: </label>
-						<input type="password" name="pass-hard" class="pass-hard">
-						<div class="passhard"></div>
+            If your callback function return false value than validation was stopped. Otherwise it proceeds... 
+            The filter I named 'passAdvise'. It's a very simple function,
+            but this example is necessary to demonstrate interactions with inputs data in plugin context.
+            Here's how it works:<br>
+            <ul>
+              <li>If password you typed contains only characters and is not complex, the password will be rejected.</li>
+              <li>If password you typed contains only characters or digits and is not complex, the password will be rejected.</li>
+              <li>If password you typed contains at least one character, one special symbol. one digit symbol, 
+              it will be sent to the server</li>
+            </ul>
+          </p>
+          <form id="example-11" action="/example">
+            <label for="pass">Password: </label>
+            <input type="password" name="pass-hard" class="pass-hard">
+            <div class="passhard"></div>
 
-						<button type="submit" class="send">Send</button>
-					</form>
-				</section> <!-- ROW END -->
+            <button type="submit" class="send">Send</button>
+          </form>
+        </section> <!-- ROW END -->
 
-				<!-- OTHER FORM INPUT -->
-				<section class="row"> <!-- ROW -->
-					<h2>OTHER INPUT FORMS</h2>
-					<p>
-						There are other form inputs as color, file, etc...
-						Validator gives you filters for all html input elements.
-					</p>
+        <!-- OTHER FORM INPUT -->
+        <section class="row"> <!-- ROW -->
+          <h2>OTHER INPUT FORMS</h2>
+          <p>
+            There are other form inputs as color, file, etc...
+            Validator gives you filters for all html input elements.
+          </p>
 <pre><code class="javascript">
 /**
  * Other form input
  */
 
 $('#other-form-input').validator({
-	autoClear: false,
-	filters: {
-		'.file':  'required | image',
-		'.color': 'required | color',
-		'.date':  'required | date',
-		'.time':  'required | time'
-	},
-	ajax: ajax,
-	messages: messages
+  autoClear: false,
+  filters: {
+    '.file':  'required | image',
+    '.color': 'required | color',
+    '.date':  'required | date',
+    '.time':  'required | time'
+  },
+  ajax: ajax,
+  messages: messages
 });
 
 </code></pre>
-					<form id="other-form-input" action="/example">
-						<input type="file" name="file" class="file">
-						<div class="file-message"></div>
-						<input type="color" name="color" class="color">
-						<div class="color-message"></div>
-						<input type="date" name="date" class="date">
-						<div class="date-message"></div>
-						<input type="time" name="time" class="time">
-						<div class="time-message"></div>
-						<button type="submit" class="send">Send</button>
-					</form>
-				</section> <!-- ROW END -->
-				
-				<section class="row">
-					<h2>About plugin</h2>
-					<p>
-						I like validation in Laravel framework. I thought it would be nice if I could use validation like the one in Laravel framework on the frontend-side.
+          <form id="other-form-input" action="/example">
+            <input type="file" name="file" class="file">
+            <div class="file-message"></div>
+            <input type="color" name="color" class="color">
+            <div class="color-message"></div>
+            <input type="date" name="date" class="date">
+            <div class="date-message"></div>
+            <input type="time" name="time" class="time">
+            <div class="time-message"></div>
+            <button type="submit" class="send">Send</button>
+          </form>
+        </section> <!-- ROW END -->
+        
+        <section class="row">
+          <h2>About plugin</h2>
+          <p>
+            I like validation in Laravel framework. I thought it would be nice if I could use validation like the one in Laravel framework on the frontend-side.
 <pre><code class="php">
 /**
  * This is example of Validator in Laravel
  */
 
 $validator = Validator::make(
-		['name' => 'Dayle'],
-		['name' => 'required|min:5']
+    ['name' => 'Dayle'],
+    ['name' => 'required|min:5']
 );
 
 </code></pre>
-						I think that plugin gives us more default filters and even some processing-filters. We can set
-						container for validation messages and we can use ajax. We can write our own filters and even the big processing-filter. I think that this plugin gives us flexibility. There is one downside though. Validator is not declarative thus you can't use it by writting one line of code. 
+            I think that plugin gives us more default filters and even some processing-filters. We can set
+            container for validation messages and we can use ajax. We can write our own filters and even the big processing-filter. I think that this plugin gives us flexibility. There is one downside though. Validator is not declarative thus you can't use it by writting one line of code. 
 <pre><code class="javascript">
 /**
  * Jquery-Validation
@@ -794,40 +794,40 @@ $validator = Validator::make(
 $('#form').validate();
 
 </code></pre>
-						I'll think about adding it.
-						Probably you like the <a href="http://jqueryvalidation.org/">Jquery-Validation</a> more than Validator.
-						Honestly I never used the "Jquery-Validation" and I don't know how it works and what provides.
-					</p>
-				</section> <!-- ROW END -->
+            I'll think about adding it.
+            Probably you like the <a href="http://jqueryvalidation.org/">Jquery-Validation</a> more than Validator.
+            Honestly I never used the "Jquery-Validation" and I don't know how it works and what provides.
+          </p>
+        </section> <!-- ROW END -->
 
-				<section class="row"> <!-- ROW -->
-					<h2>Contact</h2>
-					<div class="contact-block">
-						<a href="https://twitter.com/sasha_bichkov"><span class="icon twitter"></span></a>
-						<a href="https://www.facebook.com/profile.php?id=100008966043916"><span class="icon facebook"></span></a>
-						<a href="https://github.com/sasha-bichkov"><span class="icon github"></span></a>
-						<p>
-							<a href="#">aleksandar.bichkov@gmail.com</a>
-						</p>
-					</div>
-				</section> <!-- ROW END -->
-			</section> <!-- CONTAINER END -->
-		</div> <!-- WRAPPER END -->
+        <section class="row"> <!-- ROW -->
+          <h2>Contact</h2>
+          <div class="contact-block">
+            <a href="https://twitter.com/sasha_bichkov"><span class="icon twitter"></span></a>
+            <a href="https://www.facebook.com/profile.php?id=100008966043916"><span class="icon facebook"></span></a>
+            <a href="https://github.com/sasha-bichkov"><span class="icon github"></span></a>
+            <p>
+              <a href="#">aleksandar.bichkov@gmail.com</a>
+            </p>
+          </div>
+        </section> <!-- ROW END -->
+      </section> <!-- CONTAINER END -->
+    </div> <!-- WRAPPER END -->
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-		<script src="Validator.js"></script>
-		<script src="src/main.js"></script>
-		<script src="src/example-1.js"></script>
-		<script src="src/example-2.js"></script>
-		<script src="src/example-3.js"></script>
-		<script src="src/example-4.js"></script>
-		<script src="src/example-5.js"></script>
-		<script src="src/example-6.js"></script>
-		<script src="src/example-7.js"></script>
-		<script src="src/example-8.js"></script>
-		<script src="src/example-9.js"></script>
-		<script src="src/example-10.js"></script>
-		<script src="src/example-11.js"></script>
-		<script src="src/other-form-input.js"></script>
-	</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="Validator.js"></script>
+    <script src="src/main.js"></script>
+    <script src="src/example-1.js"></script>
+    <script src="src/example-2.js"></script>
+    <script src="src/example-3.js"></script>
+    <script src="src/example-4.js"></script>
+    <script src="src/example-5.js"></script>
+    <script src="src/example-6.js"></script>
+    <script src="src/example-7.js"></script>
+    <script src="src/example-8.js"></script>
+    <script src="src/example-9.js"></script>
+    <script src="src/example-10.js"></script>
+    <script src="src/example-11.js"></script>
+    <script src="src/other-form-input.js"></script>
+  </body>
 </html>
