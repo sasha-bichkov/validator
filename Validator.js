@@ -41,9 +41,6 @@
 
   var callbacks;
 
-  /**
-   * It's access filters by default 
-   */
   var filters = {
     callback: function(opt, val) {
       return callbacks[opt](val);
