@@ -15,8 +15,8 @@ one in Laravel framework on the frontend-side.
         messages: messages
     });
 
-Validator get _url_ value from <form> tag automatically.
-Validator add _valid_ and _invalid_ class on inputs when form submit.
+Validator get `_url_` value from <form> tag automatically.
+Validator add `_.valid_` and `_.invalid_` class on inputs when form submit.
 
 ### _autoClear_ ###
 Users will send form to the server many times because by default the option has set as `true`.
