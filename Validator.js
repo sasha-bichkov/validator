@@ -85,7 +85,6 @@
      * http://fileinfo.com/filetypes/common
      */
     image: function(val) {
-      if (/.exe|.bat/.test(val)) return false;
       return /[^\s]+(\.(jpe?g|png|gif|bmp))$/.test(val);
     },
 
