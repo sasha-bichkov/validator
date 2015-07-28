@@ -105,7 +105,7 @@
     },
 
     min: function(opt, val) {
-      return opt <= val.length
+      return opt <= val.length || val.length === 0;
     },
 
     onlyRu: function(val) { 
