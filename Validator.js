@@ -186,15 +186,16 @@
   Validator.prototype._getElementsAndFilters = function() {
     var rules = this.rules = [];
     var selectors = this.selectors = [];
+    var filters = this.options.filters;
 
-    for (var selector in this.options.filters) {
+    for (var selector in filters) {
       if (selector && typeof selector === 'string') {
         selectors.push(selector);
       } else {
         throw new TypeError('Element name is empty or not a string!');
       }
 
-      var rule = this.options.filters[selector];
+      var rule = filters[selector];
       if (rule && typeof selector === 'string') {
         rules.push(rule);
       } else {
@@ -331,6 +332,8 @@
           error:   function() { ajax.error(); },
           complete: function() { if (after) after(afterArg); }
         });
+      } else { 
+        return true;
       }
 
       if (autoClear) {
