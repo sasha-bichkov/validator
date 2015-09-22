@@ -3,7 +3,7 @@ I like validation in Laravel framework. I thought it would be nice if I could us
 one in Laravel framework on the frontend-side.
 
 ## Usage
-    $('#form1').validation({
+    $('#form1').validator({
         autoClear: true|false,
         filters: {
           '.input': 'filter-1 | filter-2:condition' 
