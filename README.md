@@ -3,18 +3,18 @@ I like validation in Laravel framework. I thought it would be nice if I could us
 one in Laravel framework on the frontend-side.
 
 ## Usage
-  $('#form1').validation({
-    autoClear: true|false,
-    filters: {
-      '.input': 'filter-1 | filter-2:condition' 
-    },
-    ajax: ajax,
-    after: after,
-    before: before,
-    events: events,
-    messages: messages,
-    callbacks: callbacks
-  });
+    $('#form1').validation({
+      autoClear: true|false,
+      filters: {
+        '.input': 'filter-1 | filter-2:condition' 
+      },
+      ajax: ajax,
+      after: after,
+      before: before,
+      events: events,
+      messages: messages,
+      callbacks: callbacks
+    });
 
 Validator get `url` value from <form> tag automatically.
 Validator add `.valid` and `.invalid` class on inputs when form submit.
@@ -25,15 +25,15 @@ All inputs will clear after user click on "Send" button.
 
 ### _ajax_ ###
 See examples for more details
-
-  var ajax = {
-    success: function() {
-      //do something...
-    },
-    error = function() {
-      //do something...
-    }
-  };
+  
+    var ajax = {
+      success: function() {
+        //do something...
+      },
+      error = function() {
+        //do something...
+      }
+    };
 
 ### _after_ and _before_ ###
 _Before_ is a function which call before validation.
@@ -43,23 +43,23 @@ _After_ is a function which call after validation.
 
 ### _events_ ###
 You can set any events on your form.
-  
-  var events = {
-    'keyup': true,
-    'blur': true
-    ...
-  };
+    
+    var events = {
+      'keyup': true,
+      'blur': true
+      ...
+    };
 
 ### _messages_ ###
 See examples for more details
 
-  var messages = [
-    {
-      el: '.input',
-      valid: (string|function),
-      invalid: (string|function|array)
-    }
-  ];
+    var messages = [
+      {
+        el: '.input',
+        valid: (string|function),
+        invalid: (string|function|array)
+      }
+    ];
 
 ## Access filters by default
 See examples for more details
