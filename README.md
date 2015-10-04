@@ -12,7 +12,8 @@ one in Laravel framework on the frontend-side.
     after: after,
     before: before,
     events: events,
-    messages: messages
+    messages: messages,
+    callbacks: callbacks
   });
 
 Validator get `url` value from <form> tag automatically.
