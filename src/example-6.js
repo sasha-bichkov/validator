@@ -27,7 +27,8 @@ $(function() {
    * There are our callbacks function
    */
   var callbacks = {
-    MoreThan10: function(val) {
+    MoreThan10: function(val, $el) {
+      //$el is an input
       return val > 10;
     }
   };

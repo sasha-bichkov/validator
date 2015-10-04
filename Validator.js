@@ -41,12 +41,9 @@
 
   var callbacks;
 
-  /**
-   * It's access filters by default 
-   */
   var filters = {
-    callback: function(opt, val) {
-      return callbacks[opt](val);
+    callback: function(opt, val, $el) {
+      return callbacks[opt](val, $el);
     },
 
     chars: function(val) {
@@ -88,7 +85,6 @@
      * http://fileinfo.com/filetypes/common
      */
     image: function(val) {
-      if (/.exe|.bat/.test(val)) return false;
       return /[^\s]+(\.(jpe?g|png|gif|bmp))$/.test(val);
     },
 
@@ -335,6 +331,8 @@
           error:   function() { ajax.error(); },
           complete: function() { if (after) after(afterArg); }
         });
+      } else {
+        return true;
       }
 
       if (autoClear) {
@@ -395,7 +393,7 @@
 
       if (typeof rule === 'object') {
         regExp = filters[rule.filter];
-        matching = regExp(rule.val, value);
+        matching = regExp(rule.val, value, $el);
       } else {
         regExp = filters[rule];
         matching = regExp(value);

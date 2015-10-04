@@ -392,7 +392,8 @@ $(function() {
    * There are our callbacks function
    */
   var callbacks = {
-    MoreThan10: function(val) {
+    MoreThan10: function(val, $el) {
+      //$el is an input
       return val > 10;
     }
   };
@@ -682,7 +683,7 @@ $(function() {
   };
 
   var callbacks = {
-    passAdvise: function(val) {
+    passAdvise: function(val, $el) {
       var complexity;
       var chars = /[a-zA-Z]+/;
       var digits = /[0-9]+/;

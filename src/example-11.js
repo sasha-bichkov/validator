@@ -14,7 +14,7 @@ $(function() {
   };
 
   var callbacks = {
-    passAdvise: function(val) {
+    passAdvise: function(val, $el) {
       var complexity;
       var chars = /[a-zA-Z]+/;
       var digits = /[0-9]+/;
