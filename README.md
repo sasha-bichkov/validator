@@ -12,6 +12,7 @@ one in Laravel framework on the frontend-side.
       after: after,
       before: before,
       events: events,
+      setter: setter,
       messages: messages,
       callbacks: callbacks
     });
@@ -25,7 +26,7 @@ All inputs will clear after user click on "Send" button.
 
 ### _ajax_ ###
 See examples for more details
-  
+
     var ajax = {
       success: function() {
         //do something...
@@ -43,23 +44,59 @@ _After_ is a function which call after validation.
 
 ### _events_ ###
 You can set any events on your form.
-    
+  
     var events = {
       'keyup': true,
       'blur': true
       ...
     };
 
+### _setter_ ###
+If you want to change validator options on the fly you need use it.
+
+    var ajax = {
+      error: function() {}, 
+      success: function() {}
+    }
+
+    var setter = function() {
+      var type = $('#example').val();
+
+      return {
+        //you can on/off ajax option and any other too
+        ajax: (type === 'redirect') ? null : ajax
+      }
+    }
+
+
+### _setter_ ###
+If you want to change validator options on the fly you need use it.
+
+    var ajax = {
+      error: function() {}, 
+      success: function() {}
+    }
+
+    var setter = function() {
+      var type = $('#example').val();
+
+      return {
+        //you can on/off ajax option and any other too
+        ajax: (type === 'redirect') ? null : ajax
+      }
+    }
+
+
 ### _messages_ ###
 See examples for more details
 
-    var messages = [
-      {
-        el: '.input',
-        valid: (string|function),
-        invalid: (string|function|array)
-      }
-    ];
+  var messages = [
+    {
+      el: '.input',
+      valid: (string|function),
+      invalid: (string|function|array)
+    }
+  ];
 
 ## Access filters by default
 See examples for more details

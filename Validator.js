@@ -138,7 +138,7 @@
     },
 
     url: function(val) {
-      return /^(((http|https|ftp):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?)?$/.test(val);
+      return /^(((https?|ftp):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?)?$/.test(val);
     },
 
     /**
@@ -287,20 +287,24 @@
   };
 
   Validator.prototype._setFormSubmit = function() {
-    var opt = this.options;
-    var ajax = opt.ajax;
-    var after = opt.after;
-    var before = opt.before;
-    var messages = opt.messages;
-    var autoClear = opt.autoClear;
+    var self = this;
 
-    var check = this.check.bind(this);
-    var selectors = this.selectors;
-    var resetStatus = this._resetStatus.bind(this);
-    var rules = this.rules;
-    var afterArg;
+    $(this.container).on('submit', function(e) {
+      var setter = self.options.setter;
+      if (setter) self.options = $.extend(self.options, setter());
 
-    $(this.container).on('submit', function(e) {    
+      var opt = self.options;
+      var ajax = opt.ajax;
+      var after = opt.after;
+      var before = opt.before;
+      var messages = opt.messages;
+      var autoClear = opt.autoClear;
+      var check = self.check.bind(self);
+      var selectors = self.selectors;
+      var resetStatus = self._resetStatus.bind(self);
+      var rules = self.rules;
+      var afterArg;
+
       if (before) before();
 
       var data, url;

@@ -731,6 +731,58 @@ $(function() {
           </form>
         </section> <!-- ROW END -->
 
+        <!-- EXAMPLE-12 -->
+        <section class="row"> <!-- ROW -->
+          <h2>Example-12</h2>
+          <p>
+            This example uses "setter" option and shows how to change optinos on the fly<br>
+<pre><code class="javascript">
+/**
+ * Example-12
+ * If you want to change validator options on 
+ * the fly you need use it.
+ */
+
+$(function() {
+  var ajax = {
+    success: function() {
+      showStatus('success');
+    },
+    error: function() {
+      showStatus('error');
+    }
+  };
+
+  var setter = function() {
+    var type = $('.radiomethod:checked').val();
+    type = type.toLowerCase();
+
+    return {
+      ajax: (type === 'ajax') ? ajax : null
+    }
+  }
+
+  $('#example-12').validator({
+    filters: {
+      '.login12': 'required'
+    },
+    setter: setter
+  });
+});
+
+</code></pre>
+            Choose either ajax or form submit method and click on "Send" button.
+          </p>
+          <form id="example-12" action="/example">
+            <label for="Login">Login: </label>
+            <input type="text" name="login" class="login12">
+            <input type="radio" name="radio-method" class="radiomethod" value="Ajax" checked> Ajax <br />
+            <input type="radio" name="radio-method" class="radiomethod" value="Submit"> Submit form <br />
+
+            <button type="submit" class="send">Send</button>
+          </form>
+        </section> <!-- ROW END -->
+
         <!-- OTHER FORM INPUT -->
         <section class="row"> <!-- ROW -->
           <h2>OTHER INPUT FORMS</h2>
@@ -773,6 +825,7 @@ $('#other-form-input').validator({
           <h2>About plugin</h2>
           <p>
             I like validation in Laravel framework. I thought it would be nice if I could use validation like the one in Laravel framework on the frontend-side.
+          </p>
 <pre><code class="php">
 /**
  * This is example of Validator in Laravel
@@ -795,6 +848,7 @@ $validator = Validator::make(
 $('#form').validate();
 
 </code></pre>
+          <p>
             I'll think about adding it.
             Probably you like the <a href="http://jqueryvalidation.org/">Jquery-Validation</a> more than Validator.
             Honestly I never used the "Jquery-Validation" and I don't know how it works and what provides.
@@ -829,6 +883,7 @@ $('#form').validate();
     <script src="src/example-9.js"></script>
     <script src="src/example-10.js"></script>
     <script src="src/example-11.js"></script>
+    <script src="src/example-12.js"></script>
     <script src="src/other-form-input.js"></script>
   </body>
 </html>
