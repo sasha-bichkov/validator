@@ -208,7 +208,7 @@
     var context = this;
     var rules = this.rules;
 
-    $.each(this.rules, function(i, value) {
+    $.each(rules, function(i, value) {
       rules[i] = context._proccessRules(rules[i]);
     });
   };

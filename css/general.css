@@ -11,6 +11,7 @@ h1 {
   color: #fff;
   font-size: 50pt;
   font-weight: bold;
+  border: 6px solid #fff;
 }
 
 h1, h2 {
