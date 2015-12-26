@@ -9,18 +9,33 @@ $(function() {
       el: '.login-4',
       valid: 'Good!',
       invalid: [
-        'Login must be required',
-        'Login contain chars, digits, "." and "_"',
-        'Minimal length is 3 symbols'
+        {
+          filter: 'required',
+          text: 'Login must be required'
+        },
+        {
+          filter: 'login',
+          text: 'Login contains chars, digits, "." and "_"'
+          
+        },
+        {
+          filter: 'min',
+          text: 'Minimal length is 3 symbols'
+        }
       ]
     },
     {
       el: '.pass-4',
       valid: 'Good!',
       invalid: [
-        'Password must be required',
-        'Login contain chars, digits, "." and "_"',
-        'Minimal length is 3 symbols'
+        {
+          filter: 'required',
+          text: 'Password must be required'
+        },
+        {
+          filter: 'min',
+          text: 'Minimal length is 3 symbols'
+        }
       ]
     },
     {
@@ -45,7 +60,7 @@ $(function() {
     autoClear: false,
     filters: {
       '.login4': 'required | login | min:3',
-      '.pass4':  'required | pass  | min:3',
+      '.pass4':  'required | min:3',
       '.email4': 'required | email'
     },
     ajax: ajax,

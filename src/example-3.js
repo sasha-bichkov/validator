@@ -53,7 +53,7 @@ $(function() {
     autoClear: false,
     filters: {
       '.login3': 'required | login | min:3',
-      '.pass3':  'required | pass  | min:3',
+      '.pass3':  'required | min:3',
       '.email3': 'required | email'
     },
     ajax: ajax,

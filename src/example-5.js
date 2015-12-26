@@ -9,16 +9,28 @@ $(function() {
       el: '.pass-51',
       valid: 'Good!',
       invalid: [
-        'Password must be required',
-        'Passwords don\'t equal'
+        {
+          filter: 'required',
+          text: 'Password must be required'
+        },
+        {
+          filter: 'equal',
+          text: 'Passwords don\'t equal'
+        }
       ]
     },
     {
       el: '.pass-52',
       valid: 'Good!',
       invalid: [
-        'Password must be required',
-        'Passwords don\'t equal'
+        {
+          filter: 'required',
+          text: 'Password must be required'
+        },
+        {
+          filter: 'equal',
+          text: 'Passwords don\'t equal'
+        }
       ]
     }
   ];

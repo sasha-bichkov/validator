@@ -74,18 +74,32 @@ $(function() {
       el: '.login-2',
       valid: 'Good!',
       invalid: [
-        'Login must be required',
-        'Login contain chars, digits, "." and "_"',
-        'Minimal length is 3 symbols'
+        {
+          filter: 'required',
+          text: 'Login must be required'
+        },
+        {
+          filter: 'login',
+          text: 'Login contains chars, digits, "." and "_"'
+        },
+        {
+          filter: 'min',
+          text: 'Minimal length is 3 symbols'
+        }
       ]
     },
     {
       el: '.pass-2',
       valid: 'Good!',
       invalid: [
-        'Password must be required',
-        'Login contain chars, digits, "." and "_"',
-        'Minimal length is 3 symbols'
+        {
+          filter: 'required',
+          text: 'Password must be required'
+        },
+        {
+          filter: 'min',
+          text: 'Minimal length is 3 symbols'
+        }
       ]
     },
     {
@@ -98,7 +112,7 @@ $(function() {
   $('#example-2').validator({
     filters: {
       '.login2': 'required | login | min:3',
-      '.pass2':  'required | pass  | min:3',
+      '.pass2':  'required | min:3',
       '.email2': 'required | email'
     },
     messages: messages
@@ -187,7 +201,7 @@ $(function() {
     autoClear: false,
     filters: {
       '.login3': 'required | login | min:3',
-      '.pass3':  'required | pass  | min:3',
+      '.pass3':  'required | min:3',
       '.email3': 'required | email'
     },
     ajax: ajax,
@@ -223,28 +237,42 @@ $(function() {
 <pre><code class="javascript">
 /**
  * Example-4
- * In this example validation work with messages,
- * ajax and events
+ * In this example validation work with messages, ajax and events
  */
 
 $(function() {
-  var messages = [
+    var messages = [
     {
       el: '.login-4',
       valid: 'Good!',
       invalid: [
-        'Login must be required',
-        'Login contain chars, digits, "." and "_"',
-        'Minimal length is 3 symbols'
+        {
+          filter: 'required',
+          text: 'Login must be required'
+        },
+        {
+          filter: 'login',
+          text: 'Login contains chars, digits, "." and "_"'
+          
+        },
+        {
+          filter: 'min',
+          text: 'Minimal length is 3 symbols'
+        }
       ]
     },
     {
       el: '.pass-4',
       valid: 'Good!',
       invalid: [
-        'Password must be required',
-        'Login contain chars, digits, "." and "_"',
-        'Minimal length is 3 symbols'
+        {
+          filter: 'required',
+          text: 'Password must be required'
+        },
+        {
+          filter: 'min',
+          text: 'Minimal length is 3 symbols'
+        }
       ]
     },
     {
@@ -269,7 +297,7 @@ $(function() {
     autoClear: false,
     filters: {
       '.login4': 'required | login | min:3',
-      '.pass4':  'required | pass  | min:3',
+      '.pass4':  'required | min:3',
       '.email4': 'required | email'
     },
     ajax: ajax,
@@ -315,16 +343,28 @@ $(function() {
       el: '.pass-51',
       valid: 'Good!',
       invalid: [
-        'Password must be required',
-        'Passwords don\'t equal'
+        {
+          filter: 'required',
+          text: 'Password must be required'
+        },
+        {
+          filter: 'equal',
+          text: 'Passwords don\'t equal'
+        }
       ]
     },
     {
       el: '.pass-52',
       valid: 'Good!',
       invalid: [
-        'Password must be required',
-        'Passwords don\'t equal'
+        {
+          filter: 'required',
+          text: 'Password must be required'
+        },
+        {
+          filter: 'equal',
+          text: 'Passwords don\'t equal'
+        }
       ]
     }
   ];
@@ -563,7 +603,7 @@ $(function() {
       alert('After filter!');
     },
     filters: {
-      '.pass9': 'pass | required'
+      '.pass9': 'required'
     },
     ajax: ajax
   });

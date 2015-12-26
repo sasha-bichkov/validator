@@ -371,6 +371,7 @@
     var matching = false;
     var $msg, type, rule, value, regExp, data;
     var status, errIndex;
+    var currentRule;
 
     this._resetStatus($el);
     value = $el.val();
@@ -399,10 +400,13 @@
       if (typeof rule === 'object') {
         regExp = filters[rule.filter];
         matching = regExp(rule.val, value, $el);
+        currentRule = rule.filter;
       } else {
         regExp = filters[rule];
         matching = regExp(value);
+        currentRule = rule;
       }
+
       errIndex = j;
       if (!matching) break;
     }
@@ -415,7 +419,8 @@
       container: $msg,
       message: message,
       status: status,
-      errIndex: errIndex 
+      errIndex: errIndex,
+      errRule: currentRule
     };
 
     this._printMessage(data);
@@ -433,13 +438,17 @@
     var $msg = opt.container;
     var status = opt.status;
     var message = opt.message;
+    var errRule = opt.errRule;
     var errIndex = opt.errIndex;
     var validation = status === 'invalid' ? 'valid' : 'invalid';
     var msgstat = message ? message[status] : '';
     var text;
 
     if (typeof msgstat === 'object') {
-      text = msgstat[errIndex];
+      var obj = $.grep(msgstat, function(filterMessage) {
+        return filterMessage['filter'] === errRule;
+      });
+      text = obj[0].text;
     } else if (typeof msgstat === 'function') {
       msgstat();
     } else {

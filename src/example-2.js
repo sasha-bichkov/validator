@@ -9,18 +9,32 @@ $(function() {
       el: '.login-2',
       valid: 'Good!',
       invalid: [
-        'Login must be required',
-        'Login contain chars, digits, "." and "_"',
-        'Minimal length is 3 symbols'
+        {
+          filter: 'required',
+          text: 'Login must be required'
+        },
+        {
+          filter: 'login',
+          text: 'Login contains chars, digits, "." and "_"'
+        },
+        {
+          filter: 'min',
+          text: 'Minimal length is 3 symbols'
+        }
       ]
     },
     {
       el: '.pass-2',
       valid: 'Good!',
       invalid: [
-        'Password must be required',
-        'Login contain chars, digits, "." and "_"',
-        'Minimal length is 3 symbols'
+        {
+          filter: 'required',
+          text: 'Password must be required'
+        },
+        {
+          filter: 'min',
+          text: 'Minimal length is 3 symbols'
+        }
       ]
     },
     {
@@ -33,7 +47,7 @@ $(function() {
   $('#example-2').validator({
     filters: {
       '.login2': 'required | login | min:3',
-      '.pass2':  'required | pass  | min:3',
+      '.pass2':  'required | min:3',
       '.email2': 'required | email'
     },
     messages: messages

@@ -22,7 +22,7 @@ $(function() {
       alert('After filter!');
     },
     filters: {
-      '.pass9': 'pass | required'
+      '.pass9': 'required'
     },
     ajax: ajax
   });
