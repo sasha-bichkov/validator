@@ -116,10 +116,6 @@
       return /^([a-zA-Z]+)?$/.test(val);
     },
 
-    pass: function(val) {
-      return /^([a-zA-Z0-9#?!@$%^&*-]+)?$/.test(val);
-    },
-
     phone: function(val) {
       return /^(((8|7|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10})?$/.test(val);
     },

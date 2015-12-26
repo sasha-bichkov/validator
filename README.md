@@ -115,7 +115,6 @@ See examples for more details
 * min
 * onlyRu
 * onlyEng
-* pass
 * phone
 * phoneOrMail
 * required
