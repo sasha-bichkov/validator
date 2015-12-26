@@ -1,6 +1,10 @@
 # Changelog
 
-## Validator 0.0.3 (4 october 2015)
+## Validator 0.0.4 (26 December 2015)
+
+* Changed message option api
+
+## Validator 0.0.3 (4 October 2015)
 
 * Pass element to callback filter 
 
