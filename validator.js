@@ -47,11 +47,11 @@
     },
 
     chars: function(val) {
-      return /^([а-яА-Яa-zA-Z]+)?$/.test(val);
+      return /\w*/.test(val);
     },
 
     color: function(val) {
-      return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(val);
+      return /^(?:.{7}|.{4})?$/.test(val) && /^(#[A-Fa-f\d]+)?$/.test(val);
     },
 
     /**
@@ -65,7 +65,7 @@
     },
 
     digits: function(val) {
-      return /^([0-9]+)?$/.test(val);
+      return /^(\d+)?$/.test(val);
     },
 
     /**
@@ -89,7 +89,7 @@
     },
 
     login: function(val) {
-      return /^([A-Za-z0-9_\.]+)?$/.test(val);
+      return /^([A-Za-z\d_\.]+)?$/.test(val);
     },
 
     max: function(opt, val) {
@@ -130,11 +130,11 @@
     },
 
     time: function(val) {
-      return /^((((2[0-3]|[01]?[0-9]):([0-5][0-9]))|(24:00)))?$/.test(val);
+      return /^((((2[0-3]|[01]?\d):([0-5]\d))|(24:00)))?$/.test(val);
     },
-
+(?:(ht|f)tp(s?)\:\/\/)?
     url: function(val) {
-      return /^(((https?|ftp):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?)?$/.test(val);
+      return /^((?:(https?|ftp):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?)?$/.test(val);
     },
 
     /**
