@@ -132,7 +132,7 @@
     time: function(val) {
       return /^((((2[0-3]|[01]?\d):([0-5]\d))|(24:00)))?$/.test(val);
     },
-(?:(ht|f)tp(s?)\:\/\/)?
+
     url: function(val) {
       return /^((?:(https?|ftp):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?)?$/.test(val);
     },
