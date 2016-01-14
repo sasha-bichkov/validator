@@ -96,12 +96,8 @@
       return opt >= val.length
     },
 
-    /**
-     * I found the regular expression here:
-     * http://www.regular-expressions.info/email.html
-     */
     email: function(val) {
-      return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
+      return /\b[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,6}\b/i.test(val);
     },
 
     min: function(opt, val) {
@@ -117,11 +113,11 @@
     },
 
     phone: function(val) {
-      return /^(((8|7|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10})?$/.test(val);
+      return /^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$/.test(val);
     },
 
     phoneOrMail: function(val) {
-      return (/^(((8|7|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10})?$/.test(val)) || 
+      return (/^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$/.test(val)) || 
              (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val));
     },
 
