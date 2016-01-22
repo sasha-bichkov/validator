@@ -97,7 +97,7 @@
     },
 
     email: function(val) {
-      return /\b[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,6}\b/i.test(val);
+      return /(\b[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,6}\b)?/i.test(val);
     },
 
     min: function(opt, val) {
@@ -113,7 +113,7 @@
     },
 
     phone: function(val) {
-      return /^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$/.test(val);
+      return /^(\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d)?$/.test(val);
     },
 
     phoneOrMail: function(val) {
