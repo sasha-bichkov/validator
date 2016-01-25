@@ -117,8 +117,8 @@
     },
 
     phoneOrMail: function(val) {
-      return (/^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$/.test(val)) || 
-             (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val));
+      return (/^(\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d)?$/.test(val)) ||
+             (/^([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4})?$/i.test(val));
     },
 
     required: function(val) {
