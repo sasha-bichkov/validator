@@ -1,5 +1,13 @@
 # Changelog
 
+## Validator 1.0.0 (8 February 2016)
+
+* Regexps have been improved
+
+## Validator 0.0.4 (26 December 2015)
+
+* Changed message option api
+
 ## Validator 0.0.4 (26 December 2015)
 
 * Changed message option api
