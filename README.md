@@ -2,6 +2,12 @@
 I like validation in Laravel framework. I thought it would be nice if I could use validation like the 
 one in Laravel framework on the frontend-side.
 
+## Install
+
+```sh
+$ bower install jquery-validator
+```
+
 ## Usage
     $('#form1').validation({
       autoClear: true|false,
