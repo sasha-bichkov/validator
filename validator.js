@@ -105,11 +105,11 @@
     },
 
     onlyRu: function(val) { 
-      return /^([а-яА-ЯёЁйЙ]+)?$/.test(val);
+      return /^([а-яА-ЯёЁйЙ\s]+)?$/.test(val);
     },
 
     onlyEng: function(val) {
-      return /^([a-zA-Z]+)?$/.test(val);
+      return /^([a-zA-Z\s]+)?$/.test(val);
     },
 
     phone: function(val) {
