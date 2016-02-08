@@ -1,0 +1,23 @@
+{
+  "name": "validator",
+  "main": "validator.js",
+  "homepage": "https://github.com/sasha-bichkov/validator",
+  "authors": [
+    "sasha-bichkov <aleksandar.bichkov@gmail.com>"
+  ],
+  "description": "Jquery plugin for validation form",
+  "moduleType": [],
+  "keywords": [
+    "jquery",
+    "plugin",
+    "validation"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
