@@ -16,7 +16,6 @@ $(function() {
         {
           filter: 'login',
           text: 'Login contains chars, digits, "." and "_"'
-          
         },
         {
           filter: 'min',

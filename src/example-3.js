@@ -8,8 +8,8 @@ $(function() {
   var messages = [
     {
       /**
-       * If input value is valid you can add preloader and send 
-       * data to the server that check this value on uniq in data base. 
+       * If input value is valid you can add preloader and send
+       * data to the server that check this value on uniq in data base.
        * To do it you must write ajax function here.
        */
       valid: function() {

@@ -1,5 +1,5 @@
 # Validator
-I like validation in Laravel framework. I thought it would be nice if I could use validation like the 
+I like validation in Laravel framework. I thought it would be nice if I could use validation like the
 one in Laravel framework on the frontend-side.
 
 ## Install
@@ -12,7 +12,7 @@ $ bower install jquery-validator
     $('#form1').validation({
       autoClear: true|false,
       filters: {
-        '.input': 'filter-1 | filter-2:condition' 
+        '.input': 'filter-1 | filter-2:condition'
       },
       ajax: ajax,
       after: after,
@@ -61,7 +61,7 @@ You can set any events on your form.
 If you want to change validator options on the fly you need use it.
 
     var ajax = {
-      error: function() {}, 
+      error: function() {},
       success: function() {}
     }
 
@@ -79,7 +79,7 @@ If you want to change validator options on the fly you need use it.
 If you want to change validator options on the fly you need use it.
 
     var ajax = {
-      error: function() {}, 
+      error: function() {},
       success: function() {}
     }
 

@@ -12,12 +12,12 @@ var showStatus = function(status) {
 
 var showSuccessIcon = function(el) {
   var $el = $(el);
-  if ($el.hasClass('error-mark')) $el.removeClass('error-mark'); 
+  if ($el.hasClass('error-mark')) $el.removeClass('error-mark');
   $el.addClass('success-mark').show();
 };
 
 var showErrorIcon = function(el) {
   var $el = $(el);
-  if ($el.hasClass('success-mark')) $el.removeClass('success-mark'); 
+  if ($el.hasClass('success-mark')) $el.removeClass('success-mark');
   $el.addClass('error-mark').show();
 };

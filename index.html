@@ -155,9 +155,9 @@ $(function() {
   var messages = [
     {
       /**
-       * If input value is valid you can add preloader 
-       * and send data to the server that check this 
-       * value on uniq in data base. To do it you must 
+       * If input value is valid you can add preloader
+       * and send data to the server that check this
+       * value on uniq in data base. To do it you must
        * write ajax function here.
        */
       valid: function() {
@@ -253,7 +253,6 @@ $(function() {
         {
           filter: 'login',
           text: 'Login contains chars, digits, "." and "_"'
-          
         },
         {
           filter: 'min',
@@ -523,9 +522,9 @@ $(function() {
         <section class="row"> <!-- ROW -->
           <h2>Example-8</h2>
           <p>
-            Validator also gives you 'eraseTags' processing-filter which can be used for 
+            Validator also gives you 'eraseTags' processing-filter which can be used for
             deleting all html-tags. If you need a filter for deleting all bbCode you
-            should write it yourself. You can rename original function 'eraseTags' to 'eraseBBCode' 
+            should write it yourself. You can rename original function 'eraseTags' to 'eraseBBCode'
             and modify it for using it as a callback : '.textarea': 'callback:eraseBBCode'.<br><br>
 <pre><code class="javascript">
 /**
@@ -576,7 +575,7 @@ $(function() {
           <p>
             This example shows how events 'after' and 'before' with
             ajax events 'success' and 'error' work. You can do anything in ajax functions,
-            but you'll probably want to do something in them 'before' (or 'after') 
+            but you'll probably want to do something in them 'before' (or 'after')
             validation and send data to server.<br><br>
 <pre><code class="javascript">
 /**
@@ -698,7 +697,6 @@ $(function() {
             <button type="submit" class="send">Send</button>
           </form>
         </section> <!-- ROW END -->
-        
         <!-- EXAMPLE-11 -->
         <section class="row"> <!-- ROW -->
           <h2>Example-11</h2>
@@ -751,14 +749,14 @@ $(function() {
 
 </code></pre>
 
-            If your callback function return false value than validation was stopped. Otherwise it proceeds... 
+            If your callback function return false value than validation was stopped. Otherwise it proceeds...
             The filter I named 'passAdvise'. It's a very simple function,
             but this example is necessary to demonstrate interactions with inputs data in plugin context.
             Here's how it works:<br>
             <ul>
               <li>If password you typed contains only characters and is not complex, the password will be rejected.</li>
               <li>If password you typed contains only characters or digits and is not complex, the password will be rejected.</li>
-              <li>If password you typed contains at least one character, one special symbol. one digit symbol, 
+              <li>If password you typed contains at least one character, one special symbol. one digit symbol,
               it will be sent to the server</li>
             </ul>
           </p>
@@ -779,7 +777,7 @@ $(function() {
 <pre><code class="javascript">
 /**
  * Example-12
- * If you want to change validator options on 
+ * If you want to change validator options on
  * the fly you need use it.
  */
 
@@ -860,7 +858,6 @@ $('#other-form-input').validator({
             <button type="submit" class="send">Send</button>
           </form>
         </section> <!-- ROW END -->
-        
         <section class="row">
           <h2>About plugin</h2>
           <p>
