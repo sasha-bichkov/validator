@@ -20,7 +20,7 @@
  */
 
 /**
- * UMD pattern which defines a jQuery plugin that works 
+ * UMD pattern which defines a jQuery plugin that works
  * with AMD and browser globals
  * https://github.com/umdjs/umd/blob/master/jqueryPlugin.js
  */
@@ -55,8 +55,8 @@
     },
 
     /**
-     * I took the regular expression from here, 
-     * but I changed it since $(input[type="date"]).val() 
+     * I took the regular expression from here,
+     * but I changed it since $(input[type="date"]).val()
      * returns the date in "yyyy-mm-dd" format.
      * http://www.regular-expressions.info/dates.html
      */
@@ -104,7 +104,7 @@
       return opt <= val.length || val.length === 0;
     },
 
-    onlyRu: function(val) { 
+    onlyRu: function(val) {
       return /^([а-яА-ЯёЁйЙ\s]+)?$/.test(val);
     },
 
@@ -209,7 +209,7 @@
    * This is a function for proccessing filters
    * Input: 'onlyEng|required|max:20'
    * Output: ['onlyEng', 'required', {filter:'max', val:'20'}]
-   * @param {(object|string)} 
+   * @param {(object|string)}
    * @returns ...
    */
   Validator.prototype._proccessRules = function(rule) {
@@ -251,7 +251,7 @@
 
   /**
    * Set events on all(!) input elements without
-   * checkbox and radio button 
+   * checkbox and radio button
    */
   Validator.prototype._setEvents = function() {
     var events = this.options.events;
@@ -307,8 +307,8 @@
         var result = check(el, rules[i], message, i);
         if (typeof result === 'boolean' && !result) {
           errors++;
-        } else { 
-          afterArg = result; 
+        } else {
+          afterArg = result;
         }
       });
 
