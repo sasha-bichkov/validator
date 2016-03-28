@@ -164,9 +164,7 @@
   };
 
   Validator.prototype.init = function() {
-    if ($.isEmptyObject(this.options)) {
-      // this._validate();
-    } else {
+    if (this.options) {
       this._getElementsAndFilters();
       this._getRules();
       this._checkRules();
